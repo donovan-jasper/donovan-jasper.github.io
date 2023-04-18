@@ -1,0 +1,4 @@
+baseURL = 'http://djasper.github.io/'
+languageCode = 'en-us'
+title = 'Donovan Jasper'
+theme = 'ananke'
