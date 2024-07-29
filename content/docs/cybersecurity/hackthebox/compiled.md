@@ -1,5 +1,5 @@
 ---
-title: "[HTB] Compiled"
+title: "[HTB] Compiled: 07/29/24"
 type: docs
 prev: docs/cybersecurity/hackthebox
 ---
@@ -54,13 +54,13 @@ eyewitness -f compiled_sites.txt
 
 Upon visiting the sites, we observe:
 
-| ![Gitea](/static/images/hackthebox/compiled/Gitea_home.png) | ![Compiled](/static/images/hackthebox/compiled/compiled_home.png) |
+| ![Gitea](/images/hackthebox/compiled/Gitea_home.png) | ![Compiled](/images/hackthebox/compiled/compiled_home.png) |
 | :----------------------------------------------------------: | :-------------------------------------------------------------: |
 | *Gitea Site*                                                 | *Custom Web App called 'Compiled'*                              |
 
 Notably, the custom web app requests a URL to a GitHub repository to compile.
 
-<img src="/static/images/hackthebox/compiled/compiled_urlsubmit.png" alt="URL Submission" style="width: 800px;">
+<img src="/images/hackthebox/compiled/compiled_urlsubmit.png" alt="URL Submission" style="width: 800px;">
 
 I tend to run some directory brute-force scans in the background when I discover websites. The one running for the Gitea site found some interesting directories.
 
@@ -77,7 +77,7 @@ feroxbuster --url http://compiled.htb:5000 -r -t 100 -w /usr/share/wordlists/sec
 
 Visiting `http://compiled.htb:3000/explore/repos`, we find the source code for a site that compiles code by cloning a repository and compiling locally. This site shares a name with the site hosted at `http://compiled.htb:5000`.
 
-![Explore Repos](/static/images/hackthebox/compiled/explore_repos.png)
+![Explore Repos](/images/hackthebox/compiled/explore_repos.png)
 
 At `http://compiled.htb:3000/richard/Compiled/src/branch/main/app.py`, we find a Flask app whose behavior matches that of the Compiled site.
 
@@ -118,12 +118,12 @@ Following the exploitation process described in the blog post, we see that we ne
 
 Luckily, we have a Gitea instance accessible. We create an account on the instance:
 
-![Registration](/static/images/hackthebox/compiled/register.png)
+![Registration](/images/hackthebox/compiled/register.png)
 
 and then make two repositories:
 
-![Make Repos](/static/images/hackthebox/compiled/newrepo.png)
-![Repo Made](/static/images/hackthebox/compiled/reposmade.png)
+![Make Repos](/images/hackthebox/compiled/newrepo.png)
+![Repo Made](/images/hackthebox/compiled/reposmade.png)
 
 ### Repository Setup
 
