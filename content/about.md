@@ -5,7 +5,7 @@ type: about
 
 Hello! I'm Donovan Jasper, a junior at Stanford University and a candidate for a B.S. in Computer Science and a B.A. in Music. My primariy concentration is Cybersecurity.
 
-![Donovan](/static/images/about/donovan.jpg)
+![Donovan](/images/about/donovan.jpg)
 
 Outside of my academic and professional pursuits, I enjoy dancing and spending time with friends or in nature.
 
