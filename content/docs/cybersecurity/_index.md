@@ -1,5 +1,5 @@
 ---
-title: Folder
+title: Cybersecurity
 type: docs
 prev: docs/first-page
 next: docs/folder/leaf
