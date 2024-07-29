@@ -8,7 +8,7 @@ prev: docs/cybersecurity/hackthebox
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var password = prompt("Enter the password to view the content:");
-    if (password !== "your_password_here") {
+    if (password !== "1#ViewTheWalkthrough#1") {
         document.body.innerHTML = `
             <p>Here are a few hints:</p>
             <ul>
