@@ -48,7 +48,7 @@ PORT     STATE SERVICE VERSION
 ...
 ```
 
-## Web
+### Web
 
 We can visit the sites to confirm that they are indeed HTTP services. Another option is to use EyeWitness, a handy tool for evaluating webpages, especially when dealing with multiple hosts.
 
