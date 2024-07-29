@@ -8,8 +8,8 @@ prev: docs/cybersecurity/hackthebox
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var password = prompt("Enter the password to view the content:");
-    if (password !== "&Compiled_Writeup&") {
-        document.getElementById("prePromptMessage").innerHTML = "<p>Incorrect password.</p>";
+    if (password !== "your_password_here") {
+        document.body.innerHTML = "<p>Incorrect password.</p>";
     } else {
         document.getElementById("prePromptMessage").style.display = "block";
     }
@@ -25,18 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </ul>
     <p>Note: The box is still active. This information will be released publicly when it is no longer active.</p>
 </div>
-
-
-<div id="prePromptMessage" style="display: none;">
-    <p>Here are a few hints:</p>
-    <ul>
-        <li>Shell Hint: Recent CVE related to the process required for the functionality of port 5000.</li>
-        <li>User Hint: File with a crackable hash.</li>
-        <li>Root Hint: Recent privilege escalation CVE related to VSCode.</li>
-    </ul>
-    <p>Note: The box is still active. This information will be released publicly when it is no longer active.</p>
-</div>
-
 This will be a walkthrough of `Compiled`, a medium difficulty Windows machine from `HackTheBox`.
 
 ## Enumeration
