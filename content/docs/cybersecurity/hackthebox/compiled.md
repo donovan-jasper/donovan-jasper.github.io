@@ -1,6 +1,7 @@
 ---
-title: "HTB Compiled"
+title: "[HTB] Compiled"
 type: docs
+date: 2024-07-30T12:00:00Z
 prev: docs/cybersecurity/hackthebox
 ---
 
