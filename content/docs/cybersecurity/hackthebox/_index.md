@@ -1,8 +1,8 @@
 ---
-title: Folder
+title: HackTheBox
 type: docs
 prev: docs/cybersecurity
-next: docs/cybersecurity/hackthebox
+next: docs/cybersecurity/compiled.md
 sidebar:
   open: true
 ---
