@@ -289,7 +289,7 @@ Emily cannot log in remotely, so we use `RunasCs.exe` to catch a shell as Emily 
 After some enumeration, we find the `VSStandardCollectorService150` service. Searching the internet yields another recent [CVE for LPE] (https://www.mdsec.co.uk/2024/01/cve-2024-20656-local-privilege-escalation-in-vsstandardcollectorservice150-service/). The [PoC widely available] (https://github.com/Wh04m1001/CVE-2024-20656) needs a few small edits, namely to change the MS VSCode version in line 4 to match the appropriate date:
 
 ```c
-WCHAR cmd[] = L"C:\\Program Files\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\DiagnosticsHub\\Collector\\VSDiagnostics.exe";
+WCHAR cmd[] = L"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\DiagnosticsHub\\Collector\\VSDiagnostics.exe";
 ```
 
 and to change the executed command (line 187) to be a reverse shell, as we don't have RDP access to the computer, and thus lack the ability to abuse an elevated shell:
