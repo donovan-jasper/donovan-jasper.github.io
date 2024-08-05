@@ -1,3 +1,11 @@
+---
+title: "[HTB] Resource"
+type: docs
+prev: docs/cybersecurity/hackthebox
+---
+
+---
+---
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var password = prompt("Enter the password to view the content:");

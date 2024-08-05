@@ -4,7 +4,8 @@ type: docs
 prev: docs/cybersecurity/hackthebox
 ---
 
-
+---
+---
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var password = prompt("Enter the password to view the content:");
@@ -68,6 +69,8 @@ Upon visiting the sites, we observe:
 
 Notably, the custom web app requests a URL to a GitHub repository to compile.
 
+---
+---
 <img src="/images/hackthebox/compiled/compiled_urlsubmit.png" alt="URL Submission" style="width: 800px;">
 
 I tend to run some directory brute-force scans in the background when I discover websites. The one running for the Gitea site found some interesting directories.
