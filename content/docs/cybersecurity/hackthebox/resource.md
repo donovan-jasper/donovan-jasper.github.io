@@ -83,7 +83,7 @@ Grab a normal index navigation from burp and send it to repeater. We edit the /G
 
 We can now visit /uploads/shell.php and use the ?cmd= shell. I used this with url encoded payloads to download and execute a reverse shell.
 
-## User Shell
+## User Escalation
 
 ### Enumeration
 We know from the dir bust and the functionality of the site that there is a db somewhere. Convinently the db.php file one directory up from the uploads directory where we landed has a username and password for us.
@@ -132,4 +132,31 @@ One thing that is very nice howerver is that the directory in which we landed ha
           }
 ```
 
-Yay! User shell via ssh... or so you thought. We're not quite done yet.
+Yay! User shell via ssh... or so you thought. We're not quite to user.txt yet.
+
+### Sign-ing-s'back Alright!
+
+The only thing in msainristil's home directory is
+
+```
+msainristil@itrc:~/decommission_old_ca$ ls
+ca-itrc  ca-itrc.pub
+```
+
+We did see something about signing being trusted by all servers. Hmmmm. We also see the zzinter user in the /home directory, who is mentioned in the admin panel as the user that can partion AD users.
+
+Lets try to sign a key with his identity.
+
+```
+ssh-keygen -t rsa -b 2048 -f keypair
+ssh-keygen -s ca-itrc -I ca-itrc.pub -n zzinter keypair.pub
+ssh -o CertificateFile=keypair-cert.pub -i keypair zzinter@ssg.htb
+```
+Boom. User.txt for real this time.
+
+## Root Escalation
+
+### SSH Glob Leak - Intended
+
+
+### Docker Mount - Unintended

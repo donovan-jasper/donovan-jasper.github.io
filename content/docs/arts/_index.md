@@ -7,4 +7,4 @@ sidebar:
   open: true
 ---
 
-Here lives my cybersecurity content.
+Here lives my artistic content.
