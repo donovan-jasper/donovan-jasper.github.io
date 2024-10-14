@@ -8,4 +8,4 @@ sidebar:
   open: true
 ---
 
-Pages can be organized into folders.
+Here are my vocal performances.
