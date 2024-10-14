@@ -2,8 +2,8 @@
 title: Demo Page
 type: docs
 prev: /
-next: docs/Cybersecurity
-next: docs/Music
+next: docs/cybersecurity
+next: docs/arts
 ---
 
 These pages house my content.

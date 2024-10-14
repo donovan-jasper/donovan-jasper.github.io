@@ -1,8 +1,8 @@
 ---
-title: Cybersecurity
+title: Arts
 type: docs
-prev: docs/first-page
-next: docs/folder/leaf
+prev: docs/
+next: docs/voice
 sidebar:
   open: true
 ---
