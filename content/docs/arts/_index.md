@@ -8,3 +8,8 @@ sidebar:
 ---
 
 Here lives my artistic content.
+
+C = Classical
+M = Modern
+P = Performance
+A = Analysis
