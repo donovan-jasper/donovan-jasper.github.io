@@ -1,0 +1,61 @@
+```
+┌──(djasper㉿kali)-[~]
+└─$ nmap -sVC -T5 10.13.37.15      
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-01 05:50 +03
+Nmap scan report for 10.13.37.15
+Host is up (0.091s latency).
+Not shown: 987 closed tcp ports (conn-refused)
+PORT     STATE SERVICE       VERSION
+53/tcp   open  domain        Simple DNS Plus
+80/tcp   open  http          Apache httpd 2.4.52 ((Win64))
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Apache/2.4.52 (Win64)
+|_http-title: Site doesn't have a title (text/html).
+88/tcp   open  kerberos-sec  Microsoft Windows Kerberos (server time: 2024-08-01 02:51:09Z)
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: amzcorp.local0., Site: Default-First-Site-Name)
+445/tcp  open  microsoft-ds?
+464/tcp  open  kpasswd5?
+593/tcp  open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  tcpwrapped
+2179/tcp open  vmrdp?
+3268/tcp open  ldap          Microsoft Windows Active Directory LDAP (Domain: amzcorp.local0., Site: Default-First-Site-Name)
+3269/tcp open  tcpwrapped
+Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2024-08-01T02:51:31
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+
+```
+
+
+```
+┌──(djasper㉿kali)-[~]
+└─$ crackmapexec smb 10.13.37.15                               
+SMB         10.13.37.15     445    DC01             [*] Windows 10 / Server 2019 Build 17763 x64 (name:DC01) (domain:amzcorp.local) (signing:True) (SMBv1:False)
+```
+
+```
+┌──(djasper㉿kali)-[~]
+└─$ enum4linux 10.13.37.15
+
+ =================================( Getting domain SID for 10.13.37.15 )=================================
+                                                                                                                                     
+Domain Name: AMZCORP                                                                                                                 
+Domain Sid: S-1-5-21-4088429403-1159899800-2753317549
+
+[+] Host is part of a domain (not a workgroup) 
+```
+```
+┌──(djasper㉿kali)-[~]
+└─$ curl dc01.amzcorp.local       
+<html><meta http-equiv="refresh" content="0; url=http://jobs.amzcorp.local/" /></html>
+```
+
