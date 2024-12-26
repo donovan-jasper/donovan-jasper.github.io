@@ -27,7 +27,7 @@ I sang this for juries in the Spring 2024 quarter.
     <td>I will make you brooches and toys for your delight<br>Of bird-song at morning and star-shine at night.<br>I will make a palace fit for you and me,<br>Of green days in forests and blue days at sea.</td>
   </tr>
   <tr>
-    <td>I will make my kitchen, and you shall keep<br>Your room, where white flows the river, and bright blows the broom,<br>And you shall wash your linen and keep your body white<br>In rainfall at morning and dewfall at night.</td>
+    <td>I will make my kitchen, and you shall keep<br>Your room, where white flows the river, and bright blows the broom,<br>And you shall wash your linen and keep your body bright<br>In rainfall at morning and dewfall at night.</td>
   </tr>
   <tr>
     <td>And this shall be for music when no one else is near,<br>The fine song for singing, the rare song to hear!<br>That only I remember, that only you admire,<br>Of the broad road that stretches and the roadside fire.</td>
