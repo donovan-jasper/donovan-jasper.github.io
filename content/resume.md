@@ -4,8 +4,8 @@
 
 ## Work Experience  
 
-### **Cybersecurity Eval Engineer at OpenAI**
-*January 2025 – Present*
+<!-- ### **Cybersecurity Eval Engineer at OpenAI**
+*January 2025 – Present* -->
 
 ### **Penetration Testing Intern at Black Hills Information Security**  
 *South Dakota, Aug 2024 – Sep 2024*  
