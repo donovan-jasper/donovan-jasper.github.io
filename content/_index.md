@@ -6,7 +6,7 @@ aliases:
   - /about
 ---
 
-Hello there! I’m Donovan Jasper, a senior at Stanford University where I am pursuing dual undergraduate degrees in computer science and music as well as a master's degree in computer science. My interests span the technical and creative spectrum with concentrations in cybersecurity and vocal performance. <!-- I am currently employed as a Cybersecurity Eval Engineer at OpenAI.-->
+Hello there! I’m Donovan Jasper, a senior at Stanford University where I am pursuing dual undergraduate degrees in computer science and music as well as a master's degree in computer science. My interests span the technical and creative spectrum with concentrations in cybersecurity and vocal performance. I am currently employed as a Cybersecurity Eval Engineer at OpenAI.
 
 <img src="/images/about/donovanface.jpeg" alt="Donovan Jasper" style="width: 20%;" />
 I have several years of hands-on cybersecurity experience from freelancing and bug hunting on everything from open-source projects to large corporate Active Directory infrastructures. Along the way, I’ve held internships at Black Hills Information Security and CrowdStrike. I also serve as the competitions lead for Stanford Applied Cybersecurity.

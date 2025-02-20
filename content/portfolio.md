@@ -15,6 +15,10 @@ Link to my [resume](/djasper_resume.pdf).
 
 ### **Experience**
 
+**OpenAI: Cybersecurity Eval Engineer**  
+*OpenAI, 2025 – Present (Contract)*  
+- Engineering comprehensive evaluation benchmarks for the Preparedness team by leveraging Azure cloud services, integrating Chat APIs, and adhering to policy frameworks to safely deploy the next generation of AI Models.
+
 **Penetration Testing Intern**  
 *Black Hills Information Security, Aug 2024 – Sept 2024 (Full-time)*  
 - Conducted external, web application, internal, and pivot penetration tests for clients.  
