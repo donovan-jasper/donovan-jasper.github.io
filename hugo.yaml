@@ -30,6 +30,9 @@ menu:
     - name: Portfolio
       pageRef: /portfolio
       weight: 4
+    - name: Other Projects
+      pageRef: /other-projects
+      weight: 5
     
 
 params:
