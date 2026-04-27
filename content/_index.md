@@ -9,6 +9,7 @@ aliases:
 Hello there! I’m Donovan Jasper. I currently work as an engineer at Numenor AI. I’m also a coterm at Stanford University pursuing a BSH in Computer Science, a BAH in Music, and an MEng in Computer Science with a concentration in Network and Computer Security. My interests span the technical and creative spectrum with concentrations in cybersecurity and vocal performance.
 
 <img src="/images/about/donovanface.jpeg" alt="Donovan Jasper" style="width: 20%;" />
+
 I have several years of hands-on cybersecurity experience from freelancing and bug hunting on everything from open-source projects to large corporate Active Directory infrastructures. I’ve worked at OpenAI, Formal, Black Hills Information Security, and CrowdStrike, and I serve as the competitions lead for Stanford Applied Cyber. My recent research on AI agents in penetration testing (ARTEMIS) was [featured in the Wall Street Journal](https://www.wsj.com/tech/ai/ai-hackers-are-coming-dangerously-close-to-beating-humans-4afc3ad6).
 
 <!-- picture of nccdc team /images/about/nccdc.jpg -->
