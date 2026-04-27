@@ -15,8 +15,20 @@ Link to my [resume](/djasper_resume.pdf).
 
 ### **Experience**
 
-**OpenAI: Cybersecurity Eval Engineer**  
-*OpenAI, 2025 – Present (Contract)*  
+**Numenor AI: Eng**  
+*Numenor AI, Dec 2025 – Present*  
+- A little bit of everything.
+
+**OpenAI: Frontier Evals Engineer**  
+*OpenAI, Jul 2025 – Dec 2025 (Contract)*  
+- Worked on OpenAI's cyber content posture and continued development of the evals framework.
+
+**Formal: Eng**  
+*Formal, Sep 2025 – Nov 2025*  
+- R&D focusing on AI and Security.
+
+**OpenAI: Cybersecurity Evaluation Engineer, Preparedness**  
+*OpenAI, Jan 2025 – Jun 2025 (Contract)*  
 - Engineering comprehensive evaluation benchmarks for the Preparedness team by leveraging Azure cloud services, integrating Chat APIs, and adhering to policy frameworks to safely deploy the next generation of AI Models.
 
 **Penetration Testing Intern**  
@@ -65,6 +77,10 @@ Link to my [resume](/djasper_resume.pdf).
 - Taught over 300 students through hands-on STEM programs.  
 - Structured organization to be self-sustaining; Echelon Catapult continues to operate and has now reached over 1,600 students.
 
+**Advisor**  
+*Echelon Catapult, Jan 2021 – Jun 2023*  
+- Transitioned leadership to the next cohort of students while continuing in an advisory role.
+
 
 ### **Education**
 
@@ -72,7 +88,7 @@ Link to my [resume](/djasper_resume.pdf).
 *Stanford University, Sept 2024 – Jul 2026*  
 GPA: 4.03  
 
-**Bachelor of Science with Honors, Computer Science (Systems)**  
+**Bachelor of Science with Honors (BSH), Computer Science (Systems)**  
 *Stanford University, Sept 2021 – Jul 2025*  
 GPA: 3.88 
 
@@ -110,6 +126,13 @@ GPA: 3.88
 
 ### **Research**
 
+**ARTEMIS: Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing**  
+*2024 – 2025*  
+- Co-author on the first comprehensive evaluation of AI agents against human cybersecurity professionals in a live enterprise environment.  
+- ARTEMIS placed 2nd overall, outperforming 9 of 10 human participants on a network of ~8,000 hosts across 12 subnets.  
+- Accepted at ICLR 2026. [Featured in the Wall Street Journal](https://www.wsj.com/tech/ai/ai-hackers-are-coming-dangerously-close-to-beating-humans-4afc3ad6).  
+- Mentored by Professors Dan Boneh, Daniel Ho, Percy Liang, Matt Fredrikson, and J. Zico Kolter.
+
 **Cybench: Evaluating AI Cybersecurity Capabilities**  
 *Mar 2024 – Jul 2024*  
 - Major contributor to deterministic subtasks for CTF challenges.  
@@ -118,9 +141,21 @@ GPA: 3.88
 
 ### **Publications**
 
+**Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing**  
+  - Co-author and Project Lead (ICLR 2026) — [Featured in the Wall Street Journal](https://www.wsj.com/tech/ai/ai-hackers-are-coming-dangerously-close-to-beating-humans-4afc3ad6)  
+  - [arXiv:2512.09882](https://arxiv.org/abs/2512.09882)  
+
 **Cybench: A Framework for Evaluating Cybersecurity Capabilities and Risks of Language Models**  
   - Co-author  
   - [arXiv:2408.08926](https://arxiv.org/abs/2408.08926)  
+
+**Estimating Worst-Case Frontier Risks of Open-Weight LLMs**  
+  - Acknowledged  
+  - [arXiv:2508.03153](https://arxiv.org/abs/2508.03153)  
+
+**Persona Features Control Emergent Misalignment**  
+  - Acknowledged  
+  - [arXiv:2506.19823](https://arxiv.org/abs/2506.19823)  
 
 ### **Honors & Achievements (Tech)**
 
@@ -154,8 +189,8 @@ GPA: 3.88
 
 ### **Education**
 
-**Bachelor of Arts, Music (Vocal Performance)**  
-*Stanford University, 2021 – 2025*  
+**Bachelor of Arts with Honors (BAH), Music (Vocal Performance)**  
+*Stanford University, Aug 2022 – Jul 2026*  
 GPA: 3.88
 
 **Relevant Courses (BA in Music)**

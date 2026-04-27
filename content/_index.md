@@ -6,10 +6,10 @@ aliases:
   - /about
 ---
 
-Hello there! I’m Donovan Jasper, a senior at Stanford University where I am pursuing dual undergraduate degrees in computer science and music as well as a master's degree in computer science. My interests span the technical and creative spectrum with concentrations in cybersecurity and vocal performance. I am currently employed as a Cybersecurity Eval Engineer at OpenAI.
+Hello there! I’m Donovan Jasper. I currently work as an engineer at Numenor AI. I’m also a coterm at Stanford University pursuing a BSH in Computer Science, a BAH in Music, and an MEng in Computer Science with a concentration in Network and Computer Security. My interests span the technical and creative spectrum with concentrations in cybersecurity and vocal performance.
 
 <img src="/images/about/donovanface.jpeg" alt="Donovan Jasper" style="width: 20%;" />
-I have several years of hands-on cybersecurity experience from freelancing and bug hunting on everything from open-source projects to large corporate Active Directory infrastructures. Along the way, I’ve held internships at Black Hills Information Security and CrowdStrike. I also serve as the competitions lead for Stanford Applied Cybersecurity.
+I have several years of hands-on cybersecurity experience from freelancing and bug hunting on everything from open-source projects to large corporate Active Directory infrastructures. I’ve worked at OpenAI, Formal, Black Hills Information Security, and CrowdStrike, and I serve as the competitions lead for Stanford Applied Cyber. My recent research on AI agents in penetration testing (ARTEMIS) was [featured in the Wall Street Journal](https://www.wsj.com/tech/ai/ai-hackers-are-coming-dangerously-close-to-beating-humans-4afc3ad6).
 
 <!-- picture of nccdc team /images/about/nccdc.jpg -->
 <img src="/images/about/nccdc2023.jpg" alt="NCCDC Team" style="width: 80%;" />
@@ -74,9 +74,9 @@ I’m always excited to connect with new people and explore innovative ideas —
         </a>
     </div>
     <div class="card">
-        <a href="mailto:djasper@stanford.edu" target="_blank">
+        <a href="mailto:donovan@numenor.ai" target="_blank">
             <h3>Email</h3>
-            <p>djasper@stanford.edu</p>
+            <p>donovan@numenor.ai</p>
         </a>
     </div>
     <div class="card">
