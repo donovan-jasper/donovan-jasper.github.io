@@ -9,9 +9,9 @@ Link to my [resume](/djasper_resume.pdf).
 ## Extended Portfolio
 
 
-{{< tabs items="Tech,Arts" >}}
+{{% tabs items="Tech,Arts" %}}
 
-  {{< tab >}}
+  {{% tab %}}
 
 ### **Experience**
 
@@ -170,9 +170,9 @@ GPA: 3.88
 - **1st Place** California Mayors Cyber Cup (2019, 2018)  
 - **2nd Place** California Cybersecurity Innovation Challenge (Jan 2018)  
 
-  {{< /tab >}}
+  {{% /tab %}}
 
-  {{< tab >}}
+  {{% tab %}}
 
 ### **Experience**
 
@@ -220,6 +220,6 @@ GPA: 3.88
 - **Youth America Grand Prix Pas de Deux National Finalist** (Apr 2021)  
 - **3rd Place** Ballet Beyond Borders Pas de Deux (Nov 2017)  
 
-  {{< /tab >}}
+  {{% /tab %}}
 
-{{< /tabs >}}
+{{% /tabs %}}
