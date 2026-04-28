@@ -1,0 +1,59 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Voice', href: '/arts/voice/' },
+  { label: 'Flohlied', href: '/arts/voice/flohlied/' },
+];
+---
+
+<Docs title="Flohlied" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <p class="text-xl mb-6 fade-in" style="color: var(--text-secondary);">From Goethe's Faust by Ludwig van Beethoven</p>
+
+  <div class="fade-in">
+    <h2>Introduction</h2>
+    <p>I sang this for the 2023 SFBAC NATS Classical Auditions held March 11, 2023 at California State University East Bay in Hayward, CA. The song is titled "Flohlied" and was written by Ludwig van Beethoven. The collaborative pianist for this performance was Daniel Lockert.</p>
+
+    <p>"Flohlied" is a humorous song from Goethe's <em>Faust</em>, where Mephistopheles entertains Faust by singing about a king and his court plagued by a mischievous flea. The song serves as a satirical allegory that mocks the follies of society and human vanity. Mephistopheles uses this tale to amuse and distract Faust, drawing him deeper into conversation and subtly persuading him toward their impending pact.</p>
+
+    <h2>Video</h2>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/7prHmKlGYMI" allowfullscreen></iframe>
+    </div>
+
+    <h2>Lyrics + Translation</h2>
+    <table>
+      <tr>
+        <td><strong>German Lyrics</strong></td>
+        <td><strong>English Translation</strong></td>
+      </tr>
+      <tr>
+        <td>Es war einmal ein K&ouml;nig,<br>Der hatt' einen gro&szlig;en Floh,<br>Den liebt' er gar nicht wenig,<br>Als wie seinen eig'nen Sohn.</td>
+        <td>There once was a king,<br>Who had a large flea,<br>He loved it very much,<br>As if it were his own son.</td>
+      </tr>
+      <tr>
+        <td>Da rief er seinen Schneider,<br>Der Schneider kam heran;<br>"Da, mi&szlig; dem Junker Kleider Und mi&szlig; ihm Hosen an!"</td>
+        <td>He called his tailor,<br>The tailor came along;<br>"Here, measure the young gentleman for clothes and pants!"</td>
+      </tr>
+      <tr>
+        <td>In Sammet und in Seide War er nun angetan,<br>Hatte B&auml;nder auf dem Kleide, Hatt' auch ein Kreuz daran,<br>Und war sogleich Minister, Und hatt einen gro&szlig;en Stern.</td>
+        <td>In velvet and silk he was now dressed,<br>Had ribbons on his clothes, and also a cross on them,<br>And was immediately a minister, and had a big star.</td>
+      </tr>
+      <tr>
+        <td>Da wurden seine Geschwister Bei Hof auch gro&szlig;e Herrn.</td>
+        <td>Then his siblings also became great lords at court.</td>
+      </tr>
+      <tr>
+        <td>Und Herrn und Frau'n am Hofe, Die waren sehr geplagt,<br>Die K&ouml;nigin und die Zofe Gestochen und genagt,<br>Und durften sie nicht knicken,<br>Und weg sie jucken nicht.</td>
+        <td>And lords and ladies at court, they were very plagued,<br>The queen and the maid were bitten and gnawed,<br>And they were not allowed to crush them,<br>And not scratch them away.</td>
+      </tr>
+      <tr>
+        <td>Wir knicken und ersticken Doch gleich, wenn einer sticht.</td>
+        <td>We crush and suffocate them immediately when one bites.</td>
+      </tr>
+    </table>
+  </div>
+</Docs>

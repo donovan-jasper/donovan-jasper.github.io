@@ -1,0 +1,55 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import { techSidebar } from '../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tech', href: '/tech/' },
+];
+---
+
+<Docs title="Tech" sidebarItems={techSidebar} breadcrumbs={breadcrumbs}>
+  <p class="fade-in">Click on the sections in the sidebar to explore my tech content. I expect to add more in short order -- much of the current content I have prepared cannot be released at this time.</p>
+
+  <div class="cards fade-in">
+    <a href="/tech/cybersecurity/" class="card">
+      <span class="card-title">Cybersecurity</span>
+      <span class="card-desc">Research, vulnerability disclosures, and HackTheBox walkthroughs.</span>
+    </a>
+  </div>
+</Docs>
+
+<style>
+  .cards {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    max-width: 24rem;
+  }
+  .card {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .card:hover {
+    border-color: var(--accent-border);
+    background: var(--bg-card-hover);
+  }
+  .card-title {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+  .card-desc {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+</style>

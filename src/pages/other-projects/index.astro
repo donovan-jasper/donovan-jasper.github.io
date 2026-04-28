@@ -1,0 +1,72 @@
+---
+import Main from '../../layouts/Main.astro';
+---
+
+<Main title="Other Projects">
+  <section class="page-section">
+    <div class="fade-in">
+      <h1 class="page-title">Other Projects</h1>
+      <p class="page-desc">A collection of various projects, experiments, and creative works.</p>
+    </div>
+
+    <div class="cards fade-in">
+      <a href="/other-projects/when-silence-isnt-neutral/" class="card">
+        <span class="card-title">When Silence Isn't Neutral</span>
+        <span class="card-desc">A Student's Guide to Self-Censorship Online</span>
+      </a>
+    </div>
+  </section>
+</Main>
+
+<style>
+  .page-section {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .page-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+  .cards {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 24rem;
+  }
+  .card {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: var(--accent-border);
+    background: var(--bg-card-hover);
+    transform: translateY(-1px);
+  }
+  .card-title {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+  .card-desc {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+</style>

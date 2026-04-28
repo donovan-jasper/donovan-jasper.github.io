@@ -1,0 +1,1194 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+---
+
+<Base title="When Silence Isn't Neutral">
+  <Nav />
+  <style>
+    :root {
+      --purple-dark: #5b4b8a;
+      --purple-light: #7c6cb0;
+      --purple-muted: #9589b8;
+      --pink: #d64d6a;
+      --pink-light: #e8a0ae;
+      --coral: #e07566;
+      --teal: #2a9d8f;
+      --teal-light: #8cd3cb;
+      --mint: #52c7b8;
+      --orange: #e9a23b;
+      --gold: #f4d35e;
+      --gray-900: #1a1a2e;
+      --gray-800: #2d2d44;
+      --gray-700: #404055;
+      --gray-600: #5a5a6e;
+      --gray-500: #7a7a8c;
+      --gray-400: #9e9eab;
+      --gray-300: #c4c4ce;
+      --gray-200: #e2e2e8;
+      --gray-100: #f5f5f7;
+      --bg-cream: #faf9f7;
+      --wsin-white: #ffffff;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.06), 0 4px 10px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 40px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.04);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.25s ease;
+      --transition-slow: 0.4s ease;
+    }
+
+    .wsin-page {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--gray-800);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    .wsin-page .cover {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem;
+      background: linear-gradient(150deg, #5b4b8a 0%, #7c6cb0 25%, #8b5a7c 50%, #d64d6a 75%, #e07566 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wsin-page .cover-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .wsin-page .cover h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      color: white;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .wsin-page .subtitle {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .wsin-page .cover-meta {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.9rem;
+      max-width: 500px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem auto 0;
+    }
+
+    .wsin-page .cover-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .wsin-page .cover-meta-item svg {
+      width: 16px;
+      height: 16px;
+      opacity: 0.8;
+    }
+
+    .wsin-page .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .wsin-page section {
+      margin-bottom: 5rem;
+      text-align: center;
+    }
+
+    .wsin-page section p, .wsin-page section ul, .wsin-page section ol {
+      text-align: left;
+      max-width: 750px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .wsin-page section p {
+      margin-bottom: 1rem;
+      color: var(--gray-700);
+    }
+
+    .wsin-page section ul, .wsin-page section ol {
+      margin-bottom: 2rem;
+    }
+
+    .wsin-page section ul:not(.numbered-list):not(.response-list) {
+      padding-left: 1.5rem;
+    }
+
+    .wsin-page section ul:not(.numbered-list):not(.response-list) li {
+      margin-bottom: 0.75rem;
+      color: var(--gray-700);
+    }
+
+    .wsin-page h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, var(--purple-dark), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--gray-200);
+      display: inline-block;
+      position: relative;
+    }
+
+    .wsin-page h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple-light), var(--pink));
+    }
+
+    .wsin-page h3 {
+      font-size: 1.15rem;
+      color: var(--gray-800);
+      margin: 2.5rem auto 1.25rem;
+      max-width: 750px;
+      text-align: left;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .wsin-page h3::before {
+      content: '';
+      width: 4px;
+      height: 1em;
+      background: linear-gradient(180deg, var(--purple-light), var(--purple-dark));
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .wsin-page .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 5rem auto 4rem;
+      max-width: 300px;
+    }
+
+    .wsin-page .section-divider::before,
+    .wsin-page .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gray-300), transparent);
+    }
+
+    .wsin-page .section-divider-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--wsin-white);
+      border: 2px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 1.5rem;
+      font-size: 1.1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .wsin-page .audience-box {
+      background: var(--wsin-white);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      margin: 0 auto 3rem;
+      border: 1px solid var(--gray-200);
+      border-left: 4px solid var(--purple-dark);
+      max-width: 800px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .wsin-page .audience-box h3 {
+      margin-top: 0;
+      max-width: none;
+    }
+
+    .wsin-page .audience-box p {
+      max-width: none;
+      text-align: left;
+    }
+
+    .wsin-page .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem auto;
+      justify-items: center;
+      max-width: 820px;
+    }
+
+    .wsin-page .concept-card {
+      background: var(--wsin-white);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+      max-width: 260px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .wsin-page .concept-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .wsin-page .concept-card.censorship { border-top: 3px solid var(--purple-light); }
+    .wsin-page .concept-card.propaganda { border-top: 3px solid var(--pink); }
+    .wsin-page .concept-card.self-censor { border-top: 3px solid var(--purple-dark); }
+
+    .wsin-page .concept-icon {
+      font-size: 2.8rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .wsin-page .concept-card h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+
+    .wsin-page .concept-card.censorship h4 { color: var(--purple-light); }
+    .wsin-page .concept-card.propaganda h4 { color: var(--pink); }
+    .wsin-page .concept-card.self-censor h4 { color: var(--purple-dark); }
+
+    .wsin-page .concept-card p {
+      font-size: 0.95rem;
+      color: var(--gray-600);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .wsin-page .quote-block {
+      background: var(--wsin-white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin: 2.5rem auto;
+      position: relative;
+      border: 1px solid var(--gray-200);
+      border-left: 4px solid;
+      max-width: 750px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .wsin-page .quote-block.purple { border-left-color: var(--purple-dark); }
+    .wsin-page .quote-block.pink { border-left-color: var(--pink); }
+    .wsin-page .quote-block.teal { border-left-color: var(--teal); }
+
+    .wsin-page .quote-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--gray-800);
+      margin-bottom: 1rem;
+      padding-left: 1.25rem;
+      text-align: left;
+      max-width: none;
+      line-height: 1.6;
+    }
+
+    .wsin-page .quote-source {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      padding-left: 1.25rem;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .wsin-page .quote-translation {
+      background: var(--gray-100);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      text-align: left;
+      max-width: none;
+      border: 1px solid var(--gray-200);
+      position: relative;
+    }
+
+    .wsin-page .quote-translation::before {
+      content: 'In plain language';
+      position: absolute;
+      top: -0.6rem;
+      left: 1rem;
+      background: var(--gray-100);
+      padding: 0 0.5rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray-500);
+      font-weight: 600;
+    }
+
+    .wsin-page .callout {
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin: 2rem auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 750px;
+      border: 1px solid;
+    }
+
+    .wsin-page .callout.centered {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .wsin-page .callout-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+    }
+
+    .wsin-page .callout.highlight {
+      background: #fef8f8;
+      border-color: rgba(214, 77, 106, 0.2);
+    }
+
+    .wsin-page .callout.example {
+      background: #f5fbfa;
+      border-color: rgba(42, 157, 143, 0.2);
+    }
+
+    .wsin-page .callout.warning {
+      background: #fffcf5;
+      border-color: rgba(233, 162, 59, 0.2);
+    }
+
+    .wsin-page .callout div {
+      text-align: left;
+      flex: 1;
+    }
+
+    .wsin-page .numbered-list {
+      counter-reset: item;
+      list-style: none;
+      padding: 0;
+      max-width: 750px;
+      margin: 1.5rem auto;
+    }
+
+    .wsin-page .numbered-list li {
+      counter-increment: item;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 0.75rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--wsin-white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+    }
+
+    .wsin-page .numbered-list li::before {
+      content: counter(item);
+      background: var(--purple-light);
+      color: white;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .wsin-page .numbered-list li span {
+      text-align: left;
+      padding-top: 0.3rem;
+      color: var(--gray-700);
+    }
+
+    .wsin-page .question-card {
+      background: var(--wsin-white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin: 0 auto 1.25rem;
+      box-shadow: var(--shadow-md);
+      max-width: 700px;
+      border: 1px solid var(--gray-200);
+    }
+
+    .wsin-page .question-card h4 {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .wsin-page .question-card.q1 { border-left: 4px solid var(--purple-dark); }
+    .wsin-page .question-card.q1 h4 { color: var(--purple-dark); }
+    .wsin-page .question-card.q2 { border-left: 4px solid var(--purple-light); }
+    .wsin-page .question-card.q2 h4 { color: var(--purple-light); }
+    .wsin-page .question-card.q3 { border-left: 4px solid var(--pink); }
+    .wsin-page .question-card.q3 h4 { color: var(--pink); }
+
+    .wsin-page .question-card p, .wsin-page .question-card ul {
+      max-width: none;
+      text-align: left;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .wsin-page .response-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    .wsin-page .response-list li {
+      display: flex;
+      align-items: stretch;
+      margin-bottom: 0.75rem;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--wsin-white);
+      border: 1px solid var(--gray-200);
+    }
+
+    .wsin-page .response-list .indicator {
+      width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .wsin-page .response-list .indicator.good { background: var(--teal); color: white; }
+    .wsin-page .response-list .indicator.bad { background: var(--pink); color: white; }
+
+    .wsin-page .response-list .content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .wsin-page .response-list .thought {
+      font-style: italic;
+      color: var(--gray-600);
+      font-size: 0.95rem;
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .wsin-page .response-list .assessment {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.4rem 0.75rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .wsin-page .response-list .assessment.good { background: rgba(42, 157, 143, 0.1); color: var(--teal); }
+    .wsin-page .response-list .assessment.bad { background: rgba(214, 77, 106, 0.1); color: var(--pink); }
+    .wsin-page .response-list .assessment svg { width: 14px; height: 14px; }
+
+    .wsin-page .strategy-card {
+      background: var(--wsin-white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: var(--shadow-md);
+      max-width: 750px;
+      border: 1px solid var(--gray-200);
+      border-top-width: 3px;
+    }
+
+    .wsin-page .strategy-card.a { border-top-color: var(--purple-light); }
+    .wsin-page .strategy-card.b { border-top-color: var(--pink); }
+    .wsin-page .strategy-card.c { border-top-color: var(--purple-dark); }
+    .wsin-page .strategy-card.d { border-top-color: var(--teal); }
+    .wsin-page .strategy-card.e { border-top-color: var(--orange); }
+    .wsin-page .strategy-card.f { border-top-color: var(--coral); }
+
+    .wsin-page .strategy-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .wsin-page .strategy-letter {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .wsin-page .strategy-card.a .strategy-letter { background: var(--purple-light); }
+    .wsin-page .strategy-card.b .strategy-letter { background: var(--pink); }
+    .wsin-page .strategy-card.c .strategy-letter { background: var(--purple-dark); }
+    .wsin-page .strategy-card.d .strategy-letter { background: var(--teal); }
+    .wsin-page .strategy-card.e .strategy-letter { background: var(--orange); }
+    .wsin-page .strategy-card.f .strategy-letter { background: var(--coral); }
+
+    .wsin-page .strategy-card p, .wsin-page .strategy-card ul {
+      max-width: none;
+      text-align: left;
+      margin-left: 0;
+      margin-right: 0;
+      color: var(--gray-700);
+    }
+
+    .wsin-page .strategy-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--gray-800);
+    }
+
+    .wsin-page .action-step {
+      background: var(--gray-100);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.95rem;
+      border-left: 3px solid var(--purple-light);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .wsin-page .action-step .action-label {
+      background: var(--purple-light);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .wsin-page .recap-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 2rem auto;
+      max-width: 650px;
+    }
+
+    .wsin-page .recap-item {
+      background: var(--wsin-white);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+      border: 1px solid var(--gray-200);
+    }
+
+    .wsin-page .recap-item span {
+      text-align: left;
+      color: var(--gray-700);
+    }
+
+    .wsin-page .recap-check {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+
+    .wsin-page .final-cta {
+      background: linear-gradient(135deg, var(--purple-light) 0%, var(--purple-dark) 50%, #8b5a7c 100%);
+      border-radius: var(--radius-xl);
+      padding: 3.5rem;
+      text-align: center;
+      color: white;
+      margin: 3rem auto;
+      max-width: 750px;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .wsin-page .final-cta h3 {
+      color: white;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.4rem;
+      margin: 0 0 1rem;
+      text-transform: none;
+      letter-spacing: 0;
+      justify-content: center;
+    }
+
+    .wsin-page .final-cta h3::before { display: none; }
+
+    .wsin-page .final-cta p {
+      color: rgba(255,255,255,0.95);
+      font-size: 1.1rem;
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .wsin-page .references {
+      background: var(--wsin-white);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      margin: 3rem auto 0;
+      max-width: 800px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+    }
+
+    .wsin-page .references h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .wsin-page .reference-item {
+      font-size: 0.9rem;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      text-indent: -1.5rem;
+      text-align: left;
+      max-width: none;
+      line-height: 1.6;
+    }
+
+    .wsin-page .reference-item em {
+      font-style: italic;
+    }
+
+    .wsin-page .spiral-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      align-items: center;
+      justify-content: center;
+      margin: 2.5rem auto;
+      max-width: 750px;
+      padding: 2rem;
+      background: var(--wsin-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-200);
+    }
+
+    .wsin-page .spiral-visual {
+      width: 160px;
+      height: 160px;
+      flex-shrink: 0;
+    }
+
+    .wsin-page .spiral-visual svg { width: 100%; height: 100%; }
+
+    .wsin-page .spiral-section > div:last-child {
+      flex: 1;
+      min-width: 280px;
+      text-align: left;
+    }
+
+    .wsin-page .spiral-section > div:last-child p {
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .wsin-page .spiral-path {
+      fill: none;
+      stroke: url(#spiralGradient);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: drawSpiral 3s ease forwards;
+    }
+
+    @keyframes drawSpiral {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .wsin-page .toc {
+      background: var(--wsin-white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin: 0 auto 3rem;
+      max-width: 600px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .wsin-page .toc h3 {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 0 0 1.25rem 0;
+    }
+
+    .wsin-page .toc h3::before { display: none; }
+
+    .wsin-page .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .wsin-page .toc-list a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--gray-700);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all var(--transition-fast);
+    }
+
+    .wsin-page .toc-list a:hover {
+      background: var(--gray-100);
+      color: var(--purple-dark);
+    }
+
+    .wsin-page .toc-list .toc-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+
+    .wsin-page .toc-list a:hover .toc-number {
+      background: var(--purple-light);
+      color: white;
+    }
+  </style>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <div class="wsin-page pt-16">
+    <header class="cover">
+      <div class="cover-content">
+        <h1>When Silence Isn't Neutral</h1>
+        <p class="subtitle">A Student's Guide to Self-Censorship Online</p>
+        <div class="cover-meta">
+          <span class="cover-meta-item">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            8 min read
+          </span>
+          <span class="cover-meta-item">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+            COMM 158/258
+          </span>
+          <span class="cover-meta-item">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Students
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="audience-box">
+        <h3>Who This Is For</h3>
+        <p><strong>Audience:</strong> U.S. high school and college students who spend time on social media and group chats, and who worry about "cancel culture," dogpiling, or saying the "wrong" thing online.</p>
+        <p style="margin-bottom:0"><strong>Purpose:</strong> Using research on censorship and propaganda, this guide explains what self-censorship is, how fear of isolation shapes what we say (or don't say) online, and how we can make more thoughtful choices about silence and speech.</p>
+      </div>
+
+      <nav class="toc">
+        <h3>In This Guide</h3>
+        <ol class="toc-list">
+          <li><a href="#section-1"><span class="toc-number">1</span> Why This Manual Exists</a></li>
+          <li><a href="#section-2"><span class="toc-number">2</span> Key Concepts</a></li>
+          <li><a href="#section-3"><span class="toc-number">3</span> The Spiral of Silence</a></li>
+          <li><a href="#section-4"><span class="toc-number">4</span> Hidden Opinions</a></li>
+          <li><a href="#section-5"><span class="toc-number">5</span> When Is Silence Okay?</a></li>
+          <li><a href="#section-6"><span class="toc-number">6</span> Practical Strategies</a></li>
+          <li><a href="#section-7"><span class="toc-number">7</span> Quick Recap</a></li>
+        </ol>
+      </nav>
+
+      <section id="section-1">
+        <h2>1. Why This Manual Exists</h2>
+        <p>You've probably had this experience: you start to type a comment about a controversial topic -- policing, a campus protest, an election -- and then <strong style="color: var(--pink)">delete it</strong>. Maybe you weren't sure you had all the facts. Maybe you didn't want to start drama in the group chat. Maybe you just didn't want people to think you were <em>that kind of person</em>.</p>
+        <p>Sometimes that's just being thoughtful. But sometimes, we're not just being polite -- we're self-censoring because we're <strong style="color: var(--purple-dark)">afraid of social punishment</strong>.</p>
+        <div class="callout highlight centered">
+          <span class="callout-icon">This manual is about that gray zone.</span>
+        </div>
+        <p>You've seen how governments and platforms try to control information through <strong>censorship</strong> (blocking or restricting speech) and <strong>propaganda</strong> (messages designed to steer people in directions that serve powerful actors). But there's another layer: even when no one is directly stopping us from speaking, we may silence ourselves.</p>
+        <h3>Why understanding self-censorship matters:</h3>
+        <ul class="numbered-list">
+          <li><span>It shapes what feels like "normal" opinion in your feeds</span></li>
+          <li><span>It affects who feels safe to speak up -- especially marginalized people</span></li>
+          <li><span>It can make democracies look more consensual than they really are</span></li>
+        </ul>
+      </section>
+
+      <div class="section-divider"><div class="section-divider-icon">*</div></div>
+
+      <section id="section-2">
+        <h2>2. Key Concepts</h2>
+        <div class="concept-grid">
+          <div class="concept-card censorship">
+            <div class="concept-icon">X</div>
+            <h4>Censorship</h4>
+            <p>The suppression or restriction of expression, ideas, or information by an authority</p>
+          </div>
+          <div class="concept-card propaganda">
+            <div class="concept-icon">!</div>
+            <h4>Propaganda</h4>
+            <p>Deliberate communication designed to influence people in ways that serve the authority's interests</p>
+          </div>
+          <div class="concept-card self-censor">
+            <div class="concept-icon">...</div>
+            <h4>Self-Censorship</h4>
+            <p>Choosing not to voice an opinion because of fear of repercussions from those in power or social punishment</p>
+          </div>
+        </div>
+        <h3>Self-censorship is different from:</h3>
+        <ul>
+          <li><strong>Tact</strong> -- not saying something just to be kind or respectful</li>
+          <li><strong>Thoughtfulness</strong> -- waiting to speak until you've read more</li>
+        </ul>
+        <h3>The political dimension:</h3>
+        <p>The political version of self-censorship happens when you silence yourself because you're worried about punishment from a group that has <strong>power over you</strong>: your peers, your boss, your government, or your online community.</p>
+        <div class="quote-block pink">
+          <p class="quote-text">"The really well-trained dog is the one that turns his somersault when there is no whip."</p>
+          <p class="quote-source">-- George Orwell, as cited in Festenstein, 2018</p>
+          <div class="quote-translation">That's self-censorship -- nobody is threatening you right now, but you've internalized the threat so deeply that you police yourself.</div>
+        </div>
+      </section>
+
+      <div class="section-divider"><div class="section-divider-icon">~</div></div>
+
+      <section id="section-3">
+        <h2>3. The Spiral of Silence</h2>
+        <div class="spiral-section">
+          <div class="spiral-visual">
+            <svg viewBox="0 0 200 200">
+              <defs>
+                <linearGradient id="spiralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#7c6cb0"/>
+                  <stop offset="50%" style="stop-color:#5b4b8a"/>
+                  <stop offset="100%" style="stop-color:#d64d6a"/>
+                </linearGradient>
+              </defs>
+              <path class="spiral-path" d="M100 100 Q100 70 130 70 Q160 70 160 100 Q160 140 120 140 Q70 140 70 90 Q70 40 120 40 Q180 40 180 100 Q180 170 110 170 Q30 170 30 90"/>
+              <circle cx="180" cy="100" r="8" fill="#7c6cb0"/>
+              <circle cx="30" cy="90" r="6" fill="#d64d6a" opacity="0.5"/>
+            </svg>
+          </div>
+          <div>
+            <p>German communication scholar <strong>Elisabeth Noelle-Neumann</strong> called this dynamic the <em>spiral of silence</em>.</p>
+          </div>
+        </div>
+        <h3>Her basic argument:</h3>
+        <ul class="numbered-list">
+          <li><span><strong style="color: var(--purple-dark)">We fear social isolation.</strong> Most people would rather be wrong in a group than right and alone.</span></li>
+          <li><span><strong style="color: var(--purple-dark)">We constantly scan our environment</strong> using a "quasi-statistical sense" of where opinions stand -- what we see in our feeds, group chats, families.</span></li>
+          <li><span>If we feel our view is <strong style="color: var(--teal)">winning or widely supported</strong>, we speak more confidently.</span></li>
+          <li><span>If we feel our view is <strong style="color: var(--pink)">losing support</strong>, we fall quiet -- even before anyone censors us.</span></li>
+        </ul>
+        <div class="quote-block purple">
+          <p class="quote-text">"People are more frightened of isolation than of committing an error; they joined the masses even though they did not agree with them."</p>
+          <p class="quote-source">-- Noelle-Neumann, 1974</p>
+          <div class="quote-translation">Most of us would rather be wrong together than risk being right alone.</div>
+        </div>
+        <h3>That's the start of the spiral:</h3>
+        <ul>
+          <li>People who think they're in the majority speak up more</li>
+          <li>People who think they're in the minority go silent</li>
+          <li>The majority view looks even bigger than it really is</li>
+          <li>The net effect makes even more people switch sides or self-censor</li>
+        </ul>
+        <div class="callout example">
+          <span class="callout-icon">Example:</span>
+          <div>
+            <strong>Example:</strong> Imagine your campus has a heated debate about a protest. In your feed, almost everything you see is strongly pro-protest, with lots of likes. You know several friends who are skeptical, but none of them post. Over time, you might conclude that almost everyone is pro-protest. If you're unsure, you'll probably stay quiet rather than risk being framed as anti-justice. From the outside, it then looks like "the campus is united" -- even if, privately, it isn't.
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"><div class="section-divider-icon">?</div></div>
+
+      <section id="section-4">
+        <h2>4. Hidden Opinions &amp; Tipping Points</h2>
+        <p>The spiral of silence describes how silence spreads. <strong>Timur Kuran</strong> adds another piece: what people say in public can diverge dramatically from what they really believe. He calls this <strong style="color: var(--pink)">preference falsification</strong>.</p>
+        <div class="concept-grid" style="grid-template-columns: repeat(2, minmax(200px, 280px)); justify-content: center;">
+          <div class="concept-card" style="border-top: 3px solid var(--teal);">
+            <div class="concept-icon">*</div>
+            <h4 style="color: var(--teal);">Private Preference</h4>
+            <p>What you actually think</p>
+          </div>
+          <div class="concept-card" style="border-top: 3px solid var(--pink);">
+            <div class="concept-icon">*</div>
+            <h4 style="color: var(--pink);">Public Preference</h4>
+            <p>What you say out loud or online, given the costs of being honest</p>
+          </div>
+        </div>
+        <p>In his work on the 1989 revolutions in Eastern Europe, Kuran argues that many citizens privately disliked communist regimes but publicly complied -- attending parades, repeating slogans, avoiding criticism. People had different "thresholds" for when they'd join open opposition. Once those thresholds were crossed, there was a rapid bandwagon effect -- what looked like a sudden revolution was actually many people simultaneously dropping their self-censorship.</p>
+        <div class="callout warning">
+          <span class="callout-icon">!</span>
+          <div><strong>Key insight:</strong> Outsiders confuse outward compliance and silence with inner conviction.</div>
+        </div>
+      </section>
+
+      <div class="section-divider"><div class="section-divider-icon">?</div></div>
+
+      <section id="section-5">
+        <h2>5. When Is Silence Okay?</h2>
+        <p>Not every unsent tweet is a blow to democracy. We should reserve the term <em>self-censorship</em> for cases where silence is caused by <strong style="color: var(--purple-dark)">problematic power or influence</strong> -- not just kindness or self-control.</p>
+        <h3>Ask yourself three questions:</h3>
+        <div class="question-card q1">
+          <h4>1. Why am I staying quiet?</h4>
+          <ul class="response-list">
+            <li>
+              <div class="indicator good">+</div>
+              <div class="content">
+                <span class="thought">"I don't know enough yet"</span>
+                <span class="assessment good">Thoughtful restraint</span>
+              </div>
+            </li>
+            <li>
+              <div class="indicator good">+</div>
+              <div class="content">
+                <span class="thought">"I might hurt someone unnecessarily"</span>
+                <span class="assessment good">Ethical tact</span>
+              </div>
+            </li>
+            <li>
+              <div class="indicator bad">!</div>
+              <div class="content">
+                <span class="thought">"I'm scared my friends will ostracize me"</span>
+                <span class="assessment bad">Drifting toward self-censorship</span>
+              </div>
+            </li>
+            <li>
+              <div class="indicator bad">!</div>
+              <div class="content">
+                <span class="thought">"I don't want to get criticism piled on me or lose my opportunities"</span>
+                <span class="assessment bad">Drifting toward self-censorship</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="question-card q2">
+          <h4>2. Who has power over me here?</h4>
+          <p>Is it a government that can arrest me? A boss who can fire me? A friend group that can ostracise me? A platform that can demonetize or ban me?</p>
+        </div>
+        <div class="question-card q3">
+          <h4>3. What's the cost of speaking versus the cost of silence?</h4>
+          <p>If you speak, you might face backlash. If you stay silent, certain problems may never get named (e.g., discrimination in your major, harassment in your club).</p>
+        </div>
+        <p>Sometimes, deciding not to speak is the right call -- especially if others face greater risks than you do. But if you constantly think in terms of <em>"how do I avoid getting in trouble?"</em> instead of <em>"what's true?"</em> or <em>"what's just?"</em>, your information environment starts to look a lot like a censored one -- even if no one is formally censoring you.</p>
+      </section>
+
+      <div class="section-divider"><div class="section-divider-icon">*</div></div>
+
+      <section id="section-6">
+        <h2>6. Practical Strategies</h2>
+        <div class="strategy-card a">
+          <div class="strategy-header">
+            <div class="strategy-letter">A</div>
+            <div class="strategy-title">Check your "quasi-statistical sense"</div>
+          </div>
+          <p>Before deciding you're in a tiny minority, ask: What am I <em>actually</em> seeing? Algorithms show you a slice of opinion, not the whole campus/country. Who is missing? Are quieter or marginalized voices absent from the conversation?</p>
+          <div class="action-step">
+            <span class="action-label">Action</span> Talk offline with a few people you trust and ask what they really think. You might find more diversity of views than your feed suggests.
+          </div>
+        </div>
+        <div class="strategy-card b">
+          <div class="strategy-header">
+            <div class="strategy-letter">B</div>
+            <div class="strategy-title">Notice when fear, not care, is driving you</div>
+          </div>
+          <p>When you hover over "post" and hesitate, mentally label the feeling:</p>
+          <ul>
+            <li>"I don't want to hurt someone" -- maybe edit for tone or audience</li>
+            <li>"I don't want to get piled on or lose opportunities" -- that's potential self-censorship</li>
+          </ul>
+          <div class="action-step">
+            <span class="action-label">Action</span> You don't have to post anyway. But naming the fear helps you see when silence is about power, not just politeness.
+          </div>
+        </div>
+        <div class="strategy-card c">
+          <div class="strategy-header">
+            <div class="strategy-letter">C</div>
+            <div class="strategy-title">Use "bounded honesty"</div>
+          </div>
+          <p>You don't have to blast your spiciest opinion to thousands of followers. You can:</p>
+          <ul>
+            <li>Be <strong>fully honest</strong> in small, trusted groups (DMs, group chats, in-person)</li>
+            <li>Be <strong>more cautious</strong> in mass, searchable spaces (TikTok, X, public posts)</li>
+          </ul>
+          <p>This preserves some space where your real views exist and can evolve, even if you can't share them widely.</p>
+        </div>
+        <div class="strategy-card d">
+          <div class="strategy-header">
+            <div class="strategy-letter">D</div>
+            <div class="strategy-title">Support others who take risks</div>
+          </div>
+          <p>Spirals of silence work both ways: visible support can make it easier for others to speak. If someone posts a thoughtful but unpopular view, consider replying constructively or liking it to signal they're not alone.</p>
+          <div class="action-step">
+            <span class="action-label">Action</span> In group settings, amplify quieter voices: "I'd like to hear more about what X said earlier."
+          </div>
+        </div>
+        <div class="strategy-card e">
+          <div class="strategy-header">
+            <div class="strategy-letter">E</div>
+            <div class="strategy-title">Design your own speech norms with friends</div>
+          </div>
+          <p>With close friends or group-chat members, you can explicitly agree on:</p>
+          <ul>
+            <li><strong>Charitable reading:</strong> assume misunderstanding before malice</li>
+            <li><strong>Right to revise:</strong> people can update their views without being dragged for old messages forever</li>
+            <li><strong>No screenshotting:</strong> outside the group without consent</li>
+          </ul>
+          <p>These mini-norms reduce the power imbalance that fuels self-censorship.</p>
+        </div>
+        <div class="strategy-card f">
+          <div class="strategy-header">
+            <div class="strategy-letter">F</div>
+            <div class="strategy-title">Remember that silence also has consequences</div>
+          </div>
+          <p>It's easy to focus on the costs of speaking (embarrassment, conflict, cancellation). But there are also costs to silence:</p>
+          <ul>
+            <li>Harmful norms may go unchallenged</li>
+            <li>Targets of harassment or discrimination may feel abandoned</li>
+            <li>You may slowly adjust your own beliefs to match what you publicly perform</li>
+          </ul>
+        </div>
+        <div class="quote-block teal">
+          <p class="quote-text">"Men cease to say what they think; and when they cease to say it, they soon cease to think it."</p>
+          <p class="quote-source">-- Lippmann, 1939</p>
+          <div class="quote-translation">If you never say what you believe, over time you may start to forget what you believed in the first place.</div>
+        </div>
+      </section>
+
+      <div class="section-divider"><div class="section-divider-icon">=</div></div>
+
+      <section id="section-7">
+        <h2>7. Quick Recap</h2>
+        <div class="recap-grid">
+          <div class="recap-item">
+            <div class="recap-check">+</div>
+            <span><strong style="color: var(--purple-dark)">Self-censorship</strong> = silence from fear &amp; unequal power</span>
+          </div>
+          <div class="recap-item">
+            <div class="recap-check">+</div>
+            <span><strong style="color: var(--purple-light)">Spiral of silence</strong> = minority views vanish from view</span>
+          </div>
+          <div class="recap-item">
+            <div class="recap-check">+</div>
+            <span><strong style="color: var(--pink)">Preference falsification</strong> = hidden views, sudden tipping points</span>
+          </div>
+          <div class="recap-item">
+            <div class="recap-check">+</div>
+            <span>Platforms &amp; propaganda shape what feels <strong>safe to say</strong></span>
+          </div>
+          <div class="recap-item">
+            <div class="recap-check">+</div>
+            <span>You can <strong style="color: var(--teal)">notice fear</strong>, <strong style="color: var(--teal)">choose honesty</strong>, &amp; <strong style="color: var(--teal)">support others</strong></span>
+          </div>
+        </div>
+        <div class="final-cta">
+          <h3>The Goal</h3>
+          <p>Self-censorship will always exist. The goal isn't to say everything that crosses your mind. The goal is to make sure your silences -- and your speech -- are guided more by <strong>curiosity, truth, and caring</strong> than by invisible pressures you never chose.</p>
+        </div>
+      </section>
+
+      <section class="references">
+        <h2>References</h2>
+        <p class="reference-item">Eady, G., Paskhalis, T., Zilinsky, J., Bonneau, R., Nagler, J., &amp; Tucker, J. A. (2023). Exposure to the Russian Internet Research Agency foreign influence campaign on Twitter in the 2016 US election and its relationship to attitudes and voting behavior. <em>Nature Communications, 14</em>(1), 62.</p>
+        <p class="reference-item">Festenstein, M. (2018). Self-censorship for democrats. <em>European Journal of Political Theory, 17</em>(3), 324-342.</p>
+        <p class="reference-item">Hobbs, W. R., &amp; Roberts, M. E. (2018). How sudden censorship can increase access to information. <em>American Political Science Review, 112</em>(3), 621-636.</p>
+        <p class="reference-item">King, G., Pan, J., &amp; Roberts, M. E. (2013). How censorship in China allows government criticism but silences collective expression. <em>American Political Science Review, 107</em>(2), 1-18.</p>
+        <p class="reference-item">Kuran, T. (1991). Now out of never: The element of surprise in the East European revolution of 1989. <em>World Politics, 44</em>(1), 7-48.</p>
+        <p class="reference-item">Lippmann, W. (1939). The basic problem of democracy: I. What modern liberty means. <em>The Yale Review, 28</em>(3), 616-639.</p>
+        <p class="reference-item">Noelle-Neumann, E. (1974). The spiral of silence: A theory of public opinion. <em>Journal of Communication, 24</em>(2), 43-51.</p>
+        <p class="reference-item">Pan, J. (2025). COMM 158/258: Censorship and Propaganda [Lecture slides, Weeks 1-10]. Department of Communication, Stanford University.</p>
+      </section>
+    </main>
+
+    <footer style="text-align: center; padding: 3rem 2rem; color: var(--gray-500); font-size: 0.9rem; border-top: 1px solid var(--gray-200);">
+      <p>Created for COMM 158/258 - When Silence Isn't Neutral</p>
+    </footer>
+  </div>
+</Base>

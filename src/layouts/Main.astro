@@ -1,0 +1,30 @@
+---
+import Base from './Base.astro';
+import Nav from '../components/Nav.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <Nav />
+  <main class="pt-16">
+    <slot />
+  </main>
+  <footer style="border-top: 1px solid var(--border); padding: 2.5rem 0; margin-top: 4rem;">
+    <div style="max-width: 64rem; margin: 0 auto; padding: 0 2rem; text-align: center;">
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+        &copy; {new Date().getFullYear()} Donovan Jasper
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1.5rem; font-size: 0.75rem;">
+        <a href="https://github.com/donovan-jasper" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); text-decoration: none; transition: color 0.15s;">GitHub</a>
+        <a href="https://www.linkedin.com/in/donovan-jasper/" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); text-decoration: none; transition: color 0.15s;">LinkedIn</a>
+        <a href="mailto:donovan@numenor.ai" style="color: var(--text-muted); text-decoration: none; transition: color 0.15s;">Email</a>
+      </div>
+    </div>
+  </footer>
+</Base>

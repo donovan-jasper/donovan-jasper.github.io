@@ -1,0 +1,108 @@
+---
+import Base from './Base.astro';
+import Nav from '../components/Nav.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+interface SidebarItem {
+  label: string;
+  href: string;
+  children?: SidebarItem[];
+}
+
+interface Breadcrumb {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  sidebarItems: SidebarItem[];
+  breadcrumbs: Breadcrumb[];
+}
+
+const { title, description, sidebarItems, breadcrumbs } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<Base title={title} description={description}>
+  <Nav />
+  <div class="pt-20 pb-16">
+    <div class="docs-container">
+      <div style="display: flex; gap: 2rem;">
+        <Sidebar items={sidebarItems} currentPath={currentPath} />
+        <div style="flex: 1; min-width: 0;">
+          <!-- Breadcrumb -->
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            {breadcrumbs.map((crumb, i) => (
+              <>
+                {i > 0 && <span class="breadcrumb-sep">/</span>}
+                {i === breadcrumbs.length - 1 ? (
+                  <span class="breadcrumb-current">{crumb.label}</span>
+                ) : (
+                  <a href={crumb.href} class="breadcrumb-link">{crumb.label}</a>
+                )}
+              </>
+            ))}
+          </nav>
+
+          <!-- Content -->
+          <article class="prose" style="max-width: 52rem;">
+            <h1 class="fade-in">{title}</h1>
+            <slot />
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top: 1px solid var(--border); padding: 2.5rem 0;">
+    <div style="max-width: 64rem; margin: 0 auto; padding: 0 2rem; text-align: center;">
+      <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+        &copy; {new Date().getFullYear()} Donovan Jasper
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1.5rem; font-size: 0.75rem;">
+        <a href="https://github.com/donovan-jasper" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); text-decoration: none; transition: color 0.15s;">GitHub</a>
+        <a href="https://www.linkedin.com/in/donovan-jasper/" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); text-decoration: none; transition: color 0.15s;">LinkedIn</a>
+        <a href="mailto:donovan@numenor.ai" style="color: var(--text-muted); text-decoration: none; transition: color 0.15s;">Email</a>
+      </div>
+    </div>
+  </footer>
+</Base>
+
+<style>
+  .docs-container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  @media (max-width: 768px) {
+    .docs-container {
+      padding: 0 1rem;
+    }
+  }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb-sep {
+    color: var(--text-muted);
+    opacity: 0.4;
+    font-size: 0.75rem;
+  }
+  .breadcrumb-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .breadcrumb-link:hover {
+    color: var(--accent);
+  }
+  .breadcrumb-current {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+</style>

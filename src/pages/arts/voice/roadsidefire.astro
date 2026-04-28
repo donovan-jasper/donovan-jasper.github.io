@@ -1,0 +1,43 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Voice', href: '/arts/voice/' },
+  { label: 'The Roadside Fire', href: '/arts/voice/roadsidefire/' },
+];
+---
+
+<Docs title="The Roadside Fire" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <p class="text-xl mb-6 fade-in" style="color: var(--text-secondary);">From Songs of Travel by Vaughan Williams</p>
+
+  <div class="fade-in">
+    <h2>Introduction</h2>
+    <p>I sang piece this for Stanford Vocal Department Juries in the Spring 2024 quarter.</p>
+
+    <p>"The Roadside Fire" is a song from Vaughan Williams' <em>Songs of Travel</em> which sets poems by Robert Louis Stevenson to music. This song captures the spirit of adventure and the longing for a place to call home with vivid imagery of nature and the open road. The lyrics express a romantic and idealistic vision of building a life together with a loved one, creating a sense of warmth and intimacy. The roadside fire symbolizes the comfort and companionship found in the journey of life.</p>
+
+    <h2>Video</h2>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/3DG1pVfoDY4" allowfullscreen></iframe>
+    </div>
+
+    <h2>Lyrics</h2>
+    <table>
+      <tr>
+        <td><strong>Lyrics</strong></td>
+      </tr>
+      <tr>
+        <td>I will make you brooches and toys for your delight<br>Of bird-song at morning and star-shine at night.<br>I will make a palace fit for you and me,<br>Of green days in forests and blue days at sea.</td>
+      </tr>
+      <tr>
+        <td>I will make my kitchen, and you shall keep<br>Your room, where white flows the river, and bright blows the broom,<br>And you shall wash your linen and keep your body bright<br>In rainfall at morning and dewfall at night.</td>
+      </tr>
+      <tr>
+        <td>And this shall be for music when no one else is near,<br>The fine song for singing, the rare song to hear!<br>That only I remember, that only you admire,<br>Of the broad road that stretches and the roadside fire.</td>
+      </tr>
+    </table>
+  </div>
+</Docs>

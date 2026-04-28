@@ -1,0 +1,68 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import { artsSidebar } from '../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+];
+---
+
+<Docs title="Arts" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <p class="fade-in">Click on the sections in the sidebar to explore my artistic content.</p>
+
+  <div class="cards fade-in">
+    <a href="/arts/voice/" class="card">
+      <span class="card-title">Voice</span>
+      <span class="card-desc">Vocal performances and recordings.</span>
+    </a>
+    <a href="/arts/dance/" class="card">
+      <span class="card-title">Dance</span>
+      <span class="card-desc">Dance performances and competitions.</span>
+    </a>
+  </div>
+</Docs>
+
+<style is:global>
+  .prose .cards {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    all: unset;
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .prose .card {
+    all: unset;
+    flex: 1;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+    cursor: pointer;
+    display: block;
+    box-sizing: border-box;
+  }
+  .prose .card:hover {
+    border-color: var(--accent-border);
+    background: var(--bg-card-hover);
+  }
+  .prose .card-title {
+    all: unset;
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem !important;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+  .prose .card-desc {
+    all: unset;
+    display: block;
+    font-size: 0.8rem !important;
+    color: var(--text-muted);
+  }
+</style>

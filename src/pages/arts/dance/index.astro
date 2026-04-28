@@ -1,0 +1,69 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Dance', href: '/arts/dance/' },
+];
+
+const dances = [
+  { title: 'Grand Pas de Deux 2024', desc: 'The Nutcracker — Cardinal Ballet Company', href: '/arts/dance/gp2024/' },
+  { title: 'Grand Pas de Deux 2023', desc: 'The Nutcracker — Cardinal Ballet Company', href: '/arts/dance/gp2023/' },
+  { title: 'Cross Step Waltz Competition', desc: 'February 2023 — with Xinran Song', href: '/arts/dance/waltzcomp/' },
+  { title: 'Opening Performances', desc: 'Stanford Viennese Ball — 2022–2024', href: '/arts/dance/openingperformances/' },
+  { title: 'Are You Going?', desc: 'California Dance Classics / YAGP — 2020', href: '/arts/dance/california-dance-classics/' },
+];
+---
+
+<Docs title="Dance" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <div class="fade-in">
+    <p>Here are my dance performances.</p>
+  </div>
+
+  <div class="dance-list fade-in">
+    {dances.map(dance => (
+      <a href={dance.href} class="dance-card">
+        <span class="dance-title">{dance.title}</span>
+        <span class="dance-desc">{dance.desc}</span>
+      </a>
+    ))}
+  </div>
+</Docs>
+
+<style>
+  .dance-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .dance-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .dance-card:hover {
+    border-color: var(--accent-border);
+    background: var(--bg-card-hover);
+    transform: translateX(4px);
+  }
+  .dance-title {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .dance-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+</style>

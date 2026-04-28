@@ -1,0 +1,406 @@
+---
+import Main from '../layouts/Main.astro';
+---
+
+<Main title="Portfolio">
+  <section style="max-width: 64rem; margin: 0 auto; padding: 3rem 2rem;">
+    <div class="fade-in">
+      <h1 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary); letter-spacing: -0.02em;">Portfolio</h1>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">
+        Link to my <a href="/djasper_resume.pdf" class="resume-link">resume</a>.
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="fade-in" style="margin-bottom: 2rem;">
+      <div style="display: inline-flex; gap: 0.25rem; padding: 0.25rem; border-radius: 10px; background: var(--bg-secondary);">
+        <button class="tab-btn active" data-tab="tech">Tech</button>
+        <button class="tab-btn" data-tab="arts">Arts</button>
+      </div>
+    </div>
+
+    <!-- Tech Tab -->
+    <div id="tab-tech" class="tab-content">
+      <div class="prose fade-in">
+        <h2>Experience</h2>
+
+        <div class="entry-list">
+          <div class="portfolio-entry">
+            <h3>Numenor AI: Eng</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Numenor AI, Dec 2025 -- Present</em></p>
+            <ul><li>A little bit of everything.</li></ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>OpenAI: Frontier Evals Engineer</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>OpenAI, Jul 2025 -- Dec 2025 (Contract)</em></p>
+            <ul><li>Worked on OpenAI's cyber content posture and continued development of the evals framework.</li></ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>Formal: Eng</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Formal, Sep 2025 -- Nov 2025</em></p>
+            <ul><li>R&D focusing on AI and Security.</li></ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>OpenAI: Cybersecurity Evaluation Engineer, Preparedness</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>OpenAI, Jan 2025 -- Jun 2025 (Contract)</em></p>
+            <ul><li>Engineering comprehensive evaluation benchmarks for the Preparedness team by leveraging Azure cloud services, integrating Chat APIs, and adhering to policy frameworks to safely deploy the next generation of AI Models.</li></ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>Penetration Testing Intern</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Black Hills Information Security, Aug 2024 -- Sept 2024 (Full-time)</em></p>
+            <ul><li>Conducted external, web application, internal, and pivot penetration tests for clients.</li></ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>Tool Development Intern</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Black Hills Information Security, Jun 2024 -- Jul 2024 (Full-time)</em></p>
+            <ul>
+              <li>Developed hacking tools in PowerShell and Go</li>
+              <li>Contributed to open-source projects with over 1,000 stars.</li>
+              <li>Performed QA/QC for Antisyphon AI Dev Course, Python Course, and Attack-Detect-Defend Course (+ TAed).</li>
+            </ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>Threat Hunter Intern</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>CrowdStrike, Jun 2023 -- Aug 2023 (Internship)</em></p>
+            <ul>
+              <li>One of two interns globally for the OverWatch Elite (OWE) team.</li>
+              <li>Designed a production pipeline integrating a secure local LLM for incident detection, analysis, and reporting.</li>
+              <li>Automated creation of presentation decks and actor-tracking spreadsheets, reducing overhead for weekly, monthly, and quarterly customer check-ins.</li>
+              <li>Pipeline pushed to production; received a return offer and a full-time offer.</li>
+            </ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>Competitions Lead</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Stanford Applied Cyber, Mar 2024 -- Present (Apprenticeship, 2 yrs 7 mos)</em></p>
+            <ul>
+              <li><strong>National Champion</strong> at the 2023 Collegiate Cyber Defense Competition (Windows Defense Lead).</li>
+              <li><strong>Global Runner-up</strong> at the 2024 Collegiate Penetration Testing Competition (Windows Offense Lead).</li>
+              <li>Oversaw advanced security workshops and team mentorship.</li>
+            </ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>National Security Affairs Fellows Mentee</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>The Hoover Institution, Stanford University, Sept 2023 -- Jun 2024 (Apprenticeship)</em></p>
+            <ul>
+              <li>Accepted into the Hoover Institution's National Security Affairs Mentorship Program during its most competitive year.</li>
+              <li>Met weekly with NSAF mentors to discuss national security.</li>
+              <li>Mentored by Lt. Col. Alphanso Adams (US Air Force Cybersecurity).</li>
+            </ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>VP, Founding Member, and Researcher</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Stanford Zero-Day Exploit Research Organization, Nov 2022 -- Aug 2024 (Self-employed, 1 yr 10 mos)</em></p>
+            <ul>
+              <li>Drafted and submitted the organization's application to the Associated Students of Stanford University.</li>
+              <li>Found and exploited a buffer overflow vulnerability in open-source media streaming software (CVE-2023-25205).</li>
+            </ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>Teaching Assistant</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Stanford Internet Observatory, Sept 2023 -- Dec 2023 (Part-time, 4 mos)</em></p>
+            <ul>
+              <li>Transitioned from Google Cloud Infrastructure to on-prem Proxmox clusters.</li>
+              <li>Managed authenticated HTTP routing to VNC sessions on a private subnet via a Stanford public address.</li>
+              <li>Led sections and office hours.</li>
+            </ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>CEO/Founder/Instructor</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Echelon Catapult, Apr 2020 -- Jan 2021 (Self-employed, 10 mos)</em></p>
+            <ul>
+              <li>Established a nonprofit to deliver free or affordable STEM education to underserved communities.</li>
+              <li>Taught over 300 students through hands-on STEM programs.</li>
+              <li>Structured organization to be self-sustaining; Echelon Catapult continues to operate and has now reached over 1,600 students.</li>
+            </ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>Advisor</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Echelon Catapult, Jan 2021 -- Jun 2023</em></p>
+            <ul><li>Transitioned leadership to the next cohort of students while continuing in an advisory role.</li></ul>
+          </div>
+        </div>
+
+        <h2>Education</h2>
+
+        <div class="entry-list">
+          <div>
+            <h3>Master of Engineering (MEng), Computer Science (Network and Computer Security)</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Stanford University, Sept 2024 -- Jul 2026</em></p>
+            <p>GPA: 4.03</p>
+          </div>
+          <div>
+            <h3>Bachelor of Science with Honors (BSH), Computer Science (Systems)</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Stanford University, Sept 2021 -- Jul 2025</em></p>
+            <p>GPA: 3.88</p>
+          </div>
+        </div>
+
+        <h2>Relevant Courses (BS/MEng)</h2>
+
+        <h3>Undergraduate Core (BS, Computer Science)</h3>
+        <ul>
+          <li>CS103: Mathematical Foundations of Computing</li>
+          <li>CS106A: Programming Methodology</li>
+          <li>CS106B: Programming Abstractions</li>
+          <li>CS106L: Standard C++ Programming Laboratory</li>
+          <li>CS107: Computer Organization and Systems</li>
+          <li>CS109: Introduction to Probability for Computer Scientists</li>
+          <li>CS111: Operating Systems Principles</li>
+          <li>CS143: Compilers</li>
+          <li>CS144: Introduction to Computer Networking</li>
+          <li>CS161: Design and Analysis of Algorithms</li>
+          <li>CS191W: Writing Intensive Senior Research Project</li>
+          <li>CS195: Supervised Undergraduate Research</li>
+        </ul>
+
+        <h3>Related Courses</h3>
+        <ul>
+          <li>ENGR40M: Introduction to Electrical Engineering</li>
+          <li>MATH51: Linear Algebra</li>
+        </ul>
+
+        <h3>Graduate & Advanced (MEng, Computer Science)</h3>
+        <ul>
+          <li>CS124: From Languages to Information</li>
+          <li>CS148: Introduction to Computer Graphics and Imaging</li>
+          <li>CS152: Trust and Safety Engineering</li>
+          <li>CS153: Applied Security at Scale</li>
+          <li>CS205L: Continuous Mathematical Methods for ML</li>
+          <li>CS244: Advanced Topics in Networking</li>
+          <li>CS244B: Distributed Systems</li>
+          <li>INTLPOL268: Hack Lab: Introduction to Cybersecurity</li>
+        </ul>
+
+        <h2>Research</h2>
+
+        <div class="entry-list">
+          <div>
+            <h3>ARTEMIS: Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>2024 -- 2025</em></p>
+            <ul>
+              <li>Co-author on the first comprehensive evaluation of AI agents against human cybersecurity professionals in a live enterprise environment.</li>
+              <li>ARTEMIS placed 2nd overall, outperforming 9 of 10 human participants on a network of ~8,000 hosts across 12 subnets.</li>
+              <li>Accepted at ICLR 2026. <a href="https://www.wsj.com/tech/ai/ai-hackers-are-coming-dangerously-close-to-beating-humans-4afc3ad6" target="_blank" rel="noopener noreferrer">Featured in the Wall Street Journal</a>.</li>
+              <li>Mentored by Professors Dan Boneh, Daniel Ho, Percy Liang, Matt Fredrikson, and J. Zico Kolter.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Cybench: Evaluating AI Cybersecurity Capabilities</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Mar 2024 -- Jul 2024</em></p>
+            <ul>
+              <li>Major contributor to deterministic subtasks for CTF challenges.</li>
+              <li>Validated cybersecurity integrity of contributed challenges.</li>
+              <li>Mentored by Professors Dan Boneh, Daniel Ho, and Percy Liang.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Publications</h2>
+
+        <div class="entry-list">
+          <div>
+            <p><strong>Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing</strong></p>
+            <p>Co-author and Project Lead (ICLR 2026) -- <a href="https://www.wsj.com/tech/ai/ai-hackers-are-coming-dangerously-close-to-beating-humans-4afc3ad6" target="_blank" rel="noopener noreferrer">Featured in the Wall Street Journal</a></p>
+            <p><a href="https://arxiv.org/abs/2512.09882" target="_blank" rel="noopener noreferrer">arXiv:2512.09882</a></p>
+          </div>
+          <div>
+            <p><strong>Cybench: A Framework for Evaluating Cybersecurity Capabilities and Risks of Language Models</strong></p>
+            <p>Co-author</p>
+            <p><a href="https://arxiv.org/abs/2408.08926" target="_blank" rel="noopener noreferrer">arXiv:2408.08926</a></p>
+          </div>
+          <div>
+            <p><strong>Estimating Worst-Case Frontier Risks of Open-Weight LLMs</strong></p>
+            <p>Acknowledged</p>
+            <p><a href="https://arxiv.org/abs/2508.03153" target="_blank" rel="noopener noreferrer">arXiv:2508.03153</a></p>
+          </div>
+          <div>
+            <p><strong>Persona Features Control Emergent Misalignment</strong></p>
+            <p>Acknowledged</p>
+            <p><a href="https://arxiv.org/abs/2506.19823" target="_blank" rel="noopener noreferrer">arXiv:2506.19823</a></p>
+          </div>
+        </div>
+
+        <h2>Honors & Achievements (Tech)</h2>
+        <ul>
+          <li><strong>Global Top 100</strong> in Hack the Box Season 6 (Nov 2024)</li>
+          <li><strong>National Runners-Up</strong> in Hivestorm 2024 (Oct 2024)</li>
+          <li><strong>Global Runners-Up</strong> at Finals Collegiate Penetration Testing Competition (Jan 2024)</li>
+          <li><strong>Finalist</strong> at Stanford CyberFest Capture the Flag (Individual) (Oct 2023)</li>
+          <li><strong>National Champions</strong> at Collegiate Cyber Defense Competition (Apr 2023)</li>
+          <li><strong>2nd Place</strong> at Stanford CyberFest Capture the Flag (Individual) (Nov 2022)</li>
+          <li><strong>US Presidential Scholar</strong> (Academic Variant, May 2021)</li>
+          <li><strong>AP Scholar with Distinction</strong> (Jul 2020)</li>
+          <li><strong>1st Place</strong> California Mayors Cyber Cup (2019, 2018)</li>
+          <li><strong>2nd Place</strong> California Cybersecurity Innovation Challenge (Jan 2018)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Arts Tab -->
+    <div id="tab-arts" class="tab-content hidden">
+      <div class="prose fade-in">
+        <h2>Experience</h2>
+
+        <div class="entry-list">
+          <div class="portfolio-entry">
+            <h3>Financial Officer (Opening Committee)</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Stanford Viennese Ball, Nov 2021 -- Present (3 yrs 3 mos)</em></p>
+            <ul>
+              <li>Handled grant applications, reimbursements, and fund management.</li>
+              <li>Secured a 48% increase in VSO grant funds in 2022.</li>
+              <li>Diversified funding sources in 2023, boosting budget by 33%.</li>
+            </ul>
+          </div>
+
+          <div class="portfolio-entry">
+            <h3>Choir Manager</h3>
+            <p class="text-sm" style="color: var(--accent);"><em>Stanford University Singers, Sept 2022 -- Jun 2023 (Part-time, 10 mos)</em></p>
+            <ul>
+              <li>Coordinated rehearsals and performances.</li>
+              <li>Served as liaison between choir members and orchestral directors.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Education</h2>
+
+        <div>
+          <h3>Bachelor of Arts with Honors (BAH), Music (Vocal Performance)</h3>
+          <p class="text-sm" style="color: var(--accent);"><em>Stanford University, Aug 2022 -- Jul 2026</em></p>
+          <p>GPA: 3.88</p>
+        </div>
+
+        <h2>Relevant Courses (BA in Music)</h2>
+        <ul>
+          <li>MUSIC19A: Introduction to Music Theory</li>
+          <li>MUSIC21: Introduction to Tonal Theory</li>
+          <li>MUSIC24A: Ear Training I</li>
+          <li>MUSIC34N: Performing America: The Broadway Musical</li>
+          <li>MUSIC40: Music History to 1600</li>
+          <li>MUSIC60: How We Sing: The Voice</li>
+          <li>MUSIC146S: Sound Tracks: Music, Memory, Migration</li>
+          <li>MUSIC165: Chamber Chorale</li>
+          <li>MUSIC167: University Singers</li>
+          <li>MUSIC182: Diction for Singers</li>
+          <li>MUSIC183A: German Art Song Interpretation</li>
+          <li>MUSIC183C: Interpretation of Musical Theater Repertoire</li>
+          <li>MUSIC184B: Topics on the Musical Stage</li>
+          <li>MUSIC199: Independent Study</li>
+          <li>MUSIC246N: Transcultural Perspectives of SE Asian Music/Arts</li>
+          <li>MUSIC273: Advanced Voice</li>
+          <li>DANCE156: Social Dance III</li>
+        </ul>
+
+        <h2>Honors & Achievements (Music/Art)</h2>
+        <ul>
+          <li><strong>1st Place</strong> National Association of Teachers of Singing, Lower College TBB (Mar 2023)</li>
+          <li><strong>National Finalist</strong> National Association of Teachers of Singing, Men's Lower College Classical Division (Mar 2022)</li>
+          <li><strong>Youth America Grand Prix Pas de Deux National Finalist</strong> (Apr 2021)</li>
+          <li><strong>3rd Place</strong> Ballet Beyond Borders Pas de Deux (Nov 2017)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Main>
+
+<style>
+  .tab-btn {
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .tab-btn:hover {
+    color: var(--text-primary);
+    background: var(--accent-muted);
+  }
+  .tab-btn.active {
+    color: var(--accent);
+    background: var(--bg-card);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  }
+  .portfolio-entry {
+    padding: 0 0 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+  .portfolio-entry:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .portfolio-entry h3 {
+    margin-top: 0;
+    margin-bottom: 0.15rem;
+    font-size: 0.95rem;
+  }
+  .portfolio-entry p {
+    margin-bottom: 0.4rem;
+  }
+  .portfolio-entry ul {
+    margin-bottom: 0;
+    padding-left: 1.25rem;
+  }
+  .portfolio-entry li {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.15rem;
+  }
+  .entry-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .resume-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    font-size: 0.9rem;
+  }
+  .resume-link:hover {
+    color: var(--accent-hover);
+  }
+</style>
+
+<script>
+  function initTabs() {
+    const buttons = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = (btn as HTMLElement).dataset.tab;
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        contents.forEach(c => {
+          if (c.id === `tab-${tab}`) {
+            c.classList.remove('hidden');
+          } else {
+            c.classList.add('hidden');
+          }
+        });
+      });
+    });
+  }
+
+  initTabs();
+  document.addEventListener('astro:after-swap', initTabs);
+</script>

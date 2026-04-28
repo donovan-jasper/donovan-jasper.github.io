@@ -1,0 +1,38 @@
+---
+import Docs from '../../../../layouts/Docs.astro';
+import { techSidebar } from '../../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tech', href: '/tech/' },
+  { label: 'Cybersecurity', href: '/tech/cybersecurity/' },
+  { label: 'Research', href: '/tech/cybersecurity/research/' },
+];
+---
+
+<Docs title="Research" sidebarItems={techSidebar} breadcrumbs={breadcrumbs}>
+  <p class="fade-in">Here you will find my research contributions in the field of cybersecurity.</p>
+
+  <div class="cards fade-in">
+    <a href="/tech/cybersecurity/research/artemis/" class="card">
+      <span class="card-title">ARTEMIS</span>
+      <span class="card-desc">Comparing AI Agents to Cybersecurity Professionals in Real-World Penetration Testing. Featured in the Wall Street Journal.</span>
+    </a>
+    <a href="/tech/cybersecurity/research/cybench/" class="card">
+      <span class="card-title">Cybench</span>
+      <span class="card-desc">A Benchmark for Evaluating the Cybersecurity Capabilities and Risks of Language Models.</span>
+    </a>
+    <a href="/tech/cybersecurity/research/hoteldruid-vulnerability/" class="card">
+      <span class="card-title">HotelDruid Authenticated RCE</span>
+      <span class="card-desc">CVE-2023-34854: Authenticated remote code execution via backup/restore functionality.</span>
+    </a>
+  </div>
+</Docs>
+
+<style>
+  .cards { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.5rem; }
+  .card { padding: 0.875rem 1.25rem; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-card); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+  .card:hover { border-color: var(--accent-border); background: var(--bg-card-hover); }
+  .card-title { display: block; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.15rem; }
+  .card-desc { display: block; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+</style>

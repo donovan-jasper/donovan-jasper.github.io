@@ -1,0 +1,21 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Dance', href: '/arts/dance/' },
+  { label: 'Are You Going?', href: '/arts/dance/california-dance-classics/' },
+];
+---
+
+<Docs title="Are You Going?" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <div class="fade-in">
+    <p>In 2020, I performed this dance to a piano instrumental version of "Scarborough Fair" with the talented Mekayla Garcia at California Dance Classics and Youth America Grand Prix. This was the first time I was involved in the creative process of a dance outside of the dancing itself.</p>
+
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/2MUgjtRLPuo" allowfullscreen></iframe>
+    </div>
+  </div>
+</Docs>

@@ -1,0 +1,21 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Dance', href: '/arts/dance/' },
+  { label: 'Cross Step Waltz', href: '/arts/dance/waltzcomp/' },
+];
+---
+
+<Docs title="Cross Step Waltz Competition" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <div class="fade-in">
+    <p>In February 2023, I participated in the Cross Step Waltz competition with my friend, opening partner, and solo co-coreographer Xinran Song. Our dance was an improvisation to music we had never heard before which made for an exciting and unique experience.</p>
+
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/EHnJFSyiaKg?start=781" allowfullscreen></iframe>
+    </div>
+  </div>
+</Docs>

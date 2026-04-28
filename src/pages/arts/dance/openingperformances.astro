@@ -1,0 +1,52 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Dance', href: '/arts/dance/' },
+  { label: 'Opening Performances', href: '/arts/dance/openingperformances/' },
+];
+---
+
+<Docs title="Opening Performances" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <div class="fade-in">
+    <p>These are the opening performances in which I've participated over the years. Helping to choreogragh the solo in the opening waltz for 2023 an enjoyable adventure.</p>
+
+    <h3>Stanford Viennese Ball 2024 - Opening Waltz (Tchaikovsky - The Sleeping Beauty: Rose Adagio)</h3>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/Us06jCbVgOA" allowfullscreen></iframe>
+    </div>
+
+    <h3>Stanford Viennese Ball 2024 - Opening Polka (Strauss II - Leichtes Blut op. 319)</h3>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/NkYOnos24dI" allowfullscreen></iframe>
+    </div>
+
+    <h3>Stanford Viennese Ball 2023 - Opening Polka: Mendelssohn - A Midsummer Night's Dream Overture, Op. 21)</h3>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/y3t23kuF7FI" allowfullscreen></iframe>
+    </div>
+
+    <h3>Stanford Viennese Ball 2023 - Opening Waltz: R. Strauss - Der Rosenkavalier: Walzerfolge Nos. 1 and 2)</h3>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/ck0zp-eLAUE" allowfullscreen></iframe>
+    </div>
+
+    <h3>Stanford Viennese Ball 2023 Invitation</h3>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/5GejdKEodj4" allowfullscreen></iframe>
+    </div>
+
+    <h3>Stanford Viennese Ball 2022 - Opening Waltz (Berlioz - Symphonie fantastique, op. 14: II. Un bal)</h3>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/YiV58C--KWk" allowfullscreen></iframe>
+    </div>
+
+    <h3>Stanford Viennese Ball 2022 - Opening Polka (von Suppe - "Ouverture" from Ein Morgen, Mittag und Abend in Wien)</h3>
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/4YeVJKdzM84" allowfullscreen></iframe>
+    </div>
+  </div>
+</Docs>

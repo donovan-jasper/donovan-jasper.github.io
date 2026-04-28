@@ -1,0 +1,25 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Dance', href: '/arts/dance/' },
+  { label: 'Grand Pas de Deux 2024', href: '/arts/dance/gp2024/' },
+];
+---
+
+<Docs title="Grand Pas de Deux 2024" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <p class="text-xl mb-6 fade-in" style="color: var(--text-secondary);">From The Nutcracker</p>
+
+  <div class="fade-in">
+    <p>In 2024, I performed the Grand Pas de Deux from <em>The Nutcracker</em> again when a friend of mine was injured, and I was called to step in. The skill of my dance partner, Madi Yeung, greatly contributed to making the performance a possibility. Joining during tech week was intense, but I had a blast.</p>
+
+    <p>The Grand Pas de Deux is a highlight of <em>The Nutcracker</em>, showcasing a beautiful and technically challenging dance between the Sugar Plum Fairy and her Cavalier.</p>
+
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/H4ACDRLmPyc?start=3592" allowfullscreen></iframe>
+    </div>
+  </div>
+</Docs>

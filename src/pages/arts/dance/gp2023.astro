@@ -1,0 +1,25 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Dance', href: '/arts/dance/' },
+  { label: 'Grand Pas de Deux 2023', href: '/arts/dance/gp2023/' },
+];
+---
+
+<Docs title="Grand Pas de Deux 2023" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <p class="text-xl mb-6 fade-in" style="color: var(--text-secondary);">From The Nutcracker</p>
+
+  <div class="fade-in">
+    <p>After a 4+ year hiatus from ballet, I returned to perform the Grand Pas de Deux from Tchaikovsky's <em>The Nutcracker</em> in 2023 with the Cardinal Ballet Company at Stanford. Dancing ballet again was an enjoyable experience, and I'd like to thank Emily Okabe for her trust and willingness as a partner.</p>
+
+    <p>The Grand Pas de Deux is a highlight of <em>The Nutcracker</em>, showcasing a beautiful and technically challenging dance between the Sugar Plum Fairy and her Cavalier.</p>
+
+    <div class="youtube-embed">
+      <iframe src="https://www.youtube.com/embed/AlJVXOCXmZQ?start=3498" allowfullscreen></iframe>
+    </div>
+  </div>
+</Docs>

@@ -1,0 +1,53 @@
+---
+import Docs from '../../../../layouts/Docs.astro';
+import { techSidebar } from '../../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tech', href: '/tech/' },
+  { label: 'Cybersecurity', href: '/tech/cybersecurity/' },
+  { label: 'HackTheBox', href: '/tech/cybersecurity/hackthebox/' },
+  { label: 'Resource', href: '/tech/cybersecurity/hackthebox/resource/' },
+];
+---
+
+<Docs title="Resource" sidebarItems={techSidebar} breadcrumbs={breadcrumbs}>
+  <div id="resource-gate" class="fade-in">
+    <div id="hints-view">
+      <p>Here are a few hints:</p>
+      <ul>
+        <li><strong>Shell Hint:</strong> PHP Deserialization + ZIP Files with data</li>
+        <li><strong>User Hint:</strong> SSH Signing</li>
+        <li><strong>Root Hint:</strong> SSH Globbing Leak</li>
+      </ul>
+      <p class="mt-4" style="color: var(--text-muted);">Note: The box is still active. This information will be released publicly when it is no longer active.</p>
+      <div class="mt-6">
+        <button
+          id="unlock-btn"
+          class="px-4 py-2 rounded-lg text-sm font-medium border border-[var(--accent-border)] text-[var(--accent)] hover:bg-[var(--accent-muted)] transition-colors cursor-pointer"
+        >
+          Enter Password to Unlock Walkthrough
+        </button>
+      </div>
+    </div>
+    <div id="content-view" class="hidden">
+      <p style="color: var(--text-muted);">Walkthrough content will be available when the box is retired.</p>
+    </div>
+  </div>
+</Docs>
+
+<script>
+  function initResourceGate() {
+    const btn = document.getElementById('unlock-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const password = prompt("Enter the password to view the content:");
+      if (password === "1#ViewTheWalkthrough#1") {
+        document.getElementById('hints-view')!.classList.add('hidden');
+        document.getElementById('content-view')!.classList.remove('hidden');
+      }
+    });
+  }
+  initResourceGate();
+  document.addEventListener('astro:after-swap', initResourceGate);
+</script>

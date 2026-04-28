@@ -1,7 +1,5 @@
-# Hugo output
-public/
-resources/
-.hugo_build.lock
-
-# Editor
-.vscode/
+node_modules/
+dist/
+.astro/
+.superpowers/
+.DS_Store

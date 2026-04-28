@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&display=swap');
+
+@import "tailwindcss";
+
+/* ===== CSS Custom Properties ===== */
+:root {
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Literata', Georgia, serif;
+  --transition-speed: 0.3s;
+}
+
+/* Dark theme (default) */
+html, html[data-theme="dark"] {
+  --bg-primary: #111118;
+  --bg-secondary: #1a1a24;
+  --bg-tertiary: #222233;
+  --bg-card: #1e1e2e;
+  --bg-card-hover: #252538;
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --accent-muted: rgba(129, 140, 248, 0.15);
+  --accent-border: rgba(129, 140, 248, 0.25);
+  --text-primary: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b80;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.4);
+  --code-bg: #1a1a2e;
+  --nav-bg: rgba(17, 17, 24, 0.85);
+  --sidebar-bg: #161622;
+  --sidebar-active: rgba(129, 140, 248, 0.12);
+  --gradient-hero: linear-gradient(135deg, #111118 0%, #1a1a2e 50%, #151525 100%);
+}
+
+/* Light theme */
+html[data-theme="light"] {
+  --bg-primary: #faf8f5;
+  --bg-secondary: #f3f0eb;
+  --bg-tertiary: #ece8e1;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8f6f2;
+  --accent: #92400e;
+  --accent-hover: #78350f;
+  --accent-muted: rgba(146, 64, 14, 0.1);
+  --accent-border: rgba(146, 64, 14, 0.2);
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-muted: #a8a29e;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1);
+  --code-bg: #f5f2ee;
+  --nav-bg: rgba(250, 248, 245, 0.85);
+  --sidebar-bg: #f5f2ee;
+  --sidebar-active: rgba(146, 64, 14, 0.08);
+  --gradient-hero: linear-gradient(135deg, #faf8f5 0%, #f3f0eb 50%, #ece8e1 100%);
+}
+
+/* Light mode uses serif for body */
+html[data-theme="light"] body {
+  font-family: var(--font-serif);
+}
+
+/* Light mode specific polish */
+html[data-theme="light"] .prose a {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+
+html[data-theme="light"] .prose blockquote {
+  border-left-color: var(--accent);
+  background: rgba(146, 64, 14, 0.04);
+}
+
+html[data-theme="light"] .prose pre {
+  border-color: #e0dbd4;
+  background: #f8f5f0;
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+html[data-theme="light"] .hero-greeting {
+  font-family: var(--font-body);
+}
+
+html[data-theme="light"] .contact-label,
+html[data-theme="light"] .card-title,
+html[data-theme="light"] .sb-top {
+  font-family: var(--font-body);
+}
+
+html[data-theme="light"] .portfolio-entry {
+  background: #ffffff;
+  border-color: #e8e4de;
+}
+
+html[data-theme="light"] .portfolio-entry:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 12px rgba(146, 64, 14, 0.08);
+}
+
+html[data-theme="light"] ::selection {
+  background: var(--accent);
+  color: white;
+}
+
+html[data-theme="light"] nav,
+html[data-theme="light"] .sidebar,
+html[data-theme="light"] .nav-link,
+html[data-theme="light"] .breadcrumb,
+html[data-theme="light"] button,
+html[data-theme="light"] .tab-btn,
+html[data-theme="light"] .contact-card {
+  font-family: var(--font-body);
+}
+
+/* ===== Utility ===== */
+.hidden {
+  display: none !important;
+}
+
+/* ===== Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-speed) ease,
+              color var(--transition-speed) ease;
+}
+
+/* ===== Headings ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+/* ===== Links ===== */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* ===== Smooth theme transitions ===== */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0s;
+  transition-timing-function: ease;
+}
+
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition-duration: 0.35s !important;
+}
+
+/* ===== Prose content styles ===== */
+.prose {
+  max-width: 52rem;
+  color: var(--text-secondary);
+  font-size: 0.975rem;
+  line-height: 1.75;
+}
+
+.prose h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.prose h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.prose h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+}
+
+.prose ul, .prose ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.35rem;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: var(--accent-muted);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+}
+
+.prose blockquote p {
+  margin-bottom: 0;
+}
+
+.prose code {
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.prose pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s ease;
+}
+
+.prose img:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.prose em {
+  color: var(--text-muted);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+
+.prose table th,
+.prose table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose table th {
+  background: var(--bg-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.prose table td {
+  background: var(--bg-card);
+}
+
+.prose strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 2.5rem 0;
+}
+
+/* ===== Scroll Fade In ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children */
+.fade-in:nth-child(2) { transition-delay: 0.05s; }
+.fade-in:nth-child(3) { transition-delay: 0.1s; }
+.fade-in:nth-child(4) { transition-delay: 0.15s; }
+.fade-in:nth-child(5) { transition-delay: 0.2s; }
+
+/* ===== Lyrics Block ===== */
+.prose table td {
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ===== YouTube Embed ===== */
+.youtube-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow);
+}
+
+.youtube-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 12px;
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ===== View Transitions ===== */
+::view-transition-old(root) {
+  animation: fade-out 0.15s ease-in forwards;
+}
+::view-transition-new(root) {
+  animation: fade-in-slide 0.2s ease-out forwards;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fade-in-slide {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+  .prose {
+    font-size: 0.925rem;
+  }
+  .prose h1 {
+    font-size: 1.5rem;
+  }
+  .prose h2 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+  .prose h3 {
+    font-size: 1rem;
+  }
+  .prose pre {
+    font-size: 0.8rem;
+    padding: 1rem;
+    margin: 1rem -0.5rem;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .prose img {
+    margin: 1rem -0.5rem;
+    max-width: calc(100% + 1rem);
+    border-radius: 0;
+  }
+  .prose table {
+    font-size: 0.85rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .youtube-embed {
+    margin: 1rem -0.5rem;
+    border-radius: 0;
+  }
+  .youtube-embed iframe {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9rem;
+  }
+  .prose {
+    font-size: 0.9rem;
+  }
+  .prose h1 {
+    font-size: 1.35rem;
+  }
+  .prose pre {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+}

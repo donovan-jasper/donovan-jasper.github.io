@@ -1,0 +1,62 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Donovan Jasper - Engineer, Researcher, Performer" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      // Apply theme ASAP to prevent flash
+      document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Donovan Jasper</title>
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen">
+    <slot />
+    <script>
+      // Scroll fade-in with Intersection Observer
+      function initFadeIn() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      }
+
+      // Restore theme after view transition swap
+      function restoreTheme() {
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+      }
+
+      // Run on initial load and after view transitions
+      initFadeIn();
+      restoreTheme();
+      document.addEventListener('astro:after-swap', () => {
+        restoreTheme();
+        initFadeIn();
+      });
+    </script>
+  </body>
+</html>

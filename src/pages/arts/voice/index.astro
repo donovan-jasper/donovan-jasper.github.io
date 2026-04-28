@@ -1,0 +1,70 @@
+---
+import Docs from '../../../layouts/Docs.astro';
+import { artsSidebar } from '../../../data/sidebars';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Arts', href: '/arts/' },
+  { label: 'Voice', href: '/arts/voice/' },
+];
+
+const songs = [
+  { title: 'Friends on the Other Side', desc: 'The Princess and the Frog', href: '/arts/voice/friends-on-the-other-side/' },
+  { title: 'The Roadside Fire', desc: 'Ralph Vaughan Williams', href: '/arts/voice/roadsidefire/' },
+  { title: 'Der Wanderer', desc: 'Franz Schubert', href: '/arts/voice/derwanderer/' },
+  { title: 'Non Piu Andrai', desc: 'Le Nozze di Figaro — Mozart', href: '/arts/voice/figaro/' },
+  { title: 'Stars', desc: 'Les Miserables', href: '/arts/voice/stars/' },
+  { title: 'Flohlied', desc: 'Faust — Beethoven', href: '/arts/voice/flohlied/' },
+];
+---
+
+<Docs title="Voice" sidebarItems={artsSidebar} breadcrumbs={breadcrumbs}>
+  <div class="fade-in">
+    <p>Here are my vocal performances. I will be receiving additional professional footage for some of these performances eventually, but I wanted to put something together in the meantime.</p>
+  </div>
+
+  <div class="song-list fade-in">
+    {songs.map(song => (
+      <a href={song.href} class="song-card">
+        <span class="song-title">{song.title}</span>
+        <span class="song-desc">{song.desc}</span>
+      </a>
+    ))}
+  </div>
+</Docs>
+
+<style>
+  .song-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .song-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .song-card:hover {
+    border-color: var(--accent-border);
+    background: var(--bg-card-hover);
+    transform: translateX(4px);
+  }
+  .song-title {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .song-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+</style>
